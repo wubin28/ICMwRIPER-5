@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+# Argument count validation
+if [ $# -ne 2 ]; then
+    echo "Usage: icmwriper-5 generate <project-name>"
+    exit 1
+fi
+
+# Subcommand validation
+if [ "$1" != "generate" ]; then
+    echo "Error: Unknown command '$1'. Only 'generate' is supported."
+    exit 1
+fi
+
+# Store project name
+PROJECT_NAME="$2"
+
+# Directory existence check
+if [ -d "$PROJECT_NAME" ]; then
+    echo "Error: Directory '$PROJECT_NAME' already exists."
+    exit 1
+fi
+
+# GitHub repository configuration
+GITHUB_RAW_URL="https://raw.githubusercontent.com/wubin28/ICMwRIPER-5/main"
+FILES=("icm-bubble-template.md" "icm-story-template.md" "icmwriper-5.md" "README.md")
+
+# Create project directory
+if ! mkdir "$PROJECT_NAME"; then
+    echo "Error: Failed to create directory '$PROJECT_NAME'."
+    exit 1
+fi
+
+# Download files
+for filename in "${FILES[@]}"; do
+    url="$GITHUB_RAW_URL/$filename"
+    if ! curl -f -sS -o "$PROJECT_NAME/$filename" "$url"; then
+        echo "Error: Failed to download $filename from GitHub. Please check your internet connection and repository availability."
+        rm -rf "$PROJECT_NAME"
+        exit 1
+    fi
+done
+
+# Rename README.md
+mv "$PROJECT_NAME/README.md" "$PROJECT_NAME/icmwriper-5-README.md"
+
+# Success message
+echo "Success: Project '$PROJECT_NAME' created with ICMwRIPER-5 template files."
+exit 0
