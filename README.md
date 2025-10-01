@@ -1,158 +1,146 @@
-# Xiao Wu AI Coding Tools Showdown by Generating HTML Data Dashboard
+# ICMwRIPER-5 (Iterative Context Management with RIPER-5) Method
 
-A comparison of AI coding tools through a Python project that analyzes and visualizes AI agent performance metrics from Excel data, creates interactive HTML dashboards, and utilizes the ICMwRIPER-5 methodology.
+An AI-assisted software development methodology that iteratively applies 1 human-driven Context Management step and 5 [RIPER-5](https://forum.cursor.com/t/i-created-an-amazing-mode-called-riper-5-mode-fixes-claude-3-7-drastically/65516) rules (Research, Innovate, Plan, Execute, Review) to guide AI code generation, producing higher-quality code that better meets your requirements.
 
-## Project Purpose
+## The Problem
 
-This project evaluates the performance of various AI-assisted programming tools and their associated large language models through practical implementation challenges. Rather than relying solely on programming competition scores, we assess these rapidly evolving AI coding tools through real-world tasks that generate HTML data visualization dashboards, providing meaningful insights into their actual capabilities and effectiveness.
+Directly presenting final requirements to AI often leads to code generation that deviates from intended outcomes because the AI lacks human intervention during the development process. Without structured guidance, AI assistants may:
 
-## Evaluation Methodology
+- Make assumptions that don't align with your actual needs
+- Skip important planning steps and jump directly to implementation
+- Generate code that technically works but doesn't solve the right problem
+- Introduce unnecessary complexity or miss edge cases
+- Drift away from the original vision as the codebase evolves
 
-Each Git branch represents a single evaluation session, with branch names containing comprehensive evaluation metadata. For example, the branch `2025-09-28--20-09-satisfied-by-codebuddycode-with-default-deepseekv3.1-in-codebuddycn-on-wsl` indicates:
+## The Solution: ICMwRIPER-5 Method
 
-- **Timestamp**: Evaluation started on September 28, 2025, at 20:09
-- **Result**: "satisfied" - indicating satisfactory performance
-- **AI CLI Tool**: CodeBuddy Code CLI
-- **Model**: Default configuration with DeepSeek v3.1 large language model
-- **AI IDE**: CodeBuddyCN (China domestic version)
-- **Platform**: Windows 11 WSL2 Ubuntu 24.04
+ICMwRIPER-5 provides a structured, iterative approach that keeps both human and AI aligned throughout the development lifecycle. By separating concerns into distinct phases and maintaining clear context management, this method ensures that AI-generated code stays on track and meets actual requirements.
 
-This systematic naming convention enables tracking and comparison of different AI tool combinations across various environments and configurations.
+## How It Works
 
-## ICMwRIPER-5 (Iterative Context Management with RIPER-5) Method
+The ICMwRIPER-5 method consists of six distinct phases that create a collaborative workflow between human and AI:
 
-This project follows the **ICMwRIPER-5 Method** with six distinct development phases:
+### 1. **Iterative Context Management (by human)**
+Iteratively review and update two key files:
+- `icm-story-yyyy-mm-dd--hh-mm.md` - Story description for the current iteration
+- `icm-bubble-yyyy-mm-dd--hh-mm.md` - Starting prompts for the AI (bubbles visualize the chat bubbles between humans and AI)
+- `icmwriper-5.md` - Updated RIPER-5 protocol rules
 
-1. **Iterative Context Management** - Iteratively review and update the story description file `icm-story-yyyy-mm-dd--hh-mm.md` and starting prompt file `icm-bubble-yyyy-mm-dd--hh-mm.md` based on the current iteration story. This ensures proper alignment of AI context before entering the RIPER-5 iteration. Then send the prompts from `icm-bubble-yyyy-mm-dd--hh-mm.md` to the AI.
-2. **RESEARCH** - Information gathering and file reading only
-3. **INNOVATE** - Brainstorming approaches without implementation
-4. **PLAN** - Create comprehensive technical specifications and save to timestamped todo file
-5. **EXECUTE** - Follow the plan exactly with no creative decisions
-6. **REVIEW** - Validate implementation against the original plan and go back to phase 1
+This ensures proper alignment of AI context before entering the RIPER-5 iteration. Once ready, send the prompts from `icm-bubble-yyyy-mm-dd--hh-mm.md` to the AI to begin.
 
-**Critical**: AI assistants must declare their current mode with `[MODE: MODE_NAME]` at the start of each response.
+### 2. **RESEARCH (by AI & human)**
+Information gathering and file reading only. No code changes or implementation decisions are made. The AI explores the codebase, reads relevant files, and gathers necessary context.
 
-### Getting Started with ICMwRIPER-5 Method
+**Critical**: AI assistants must declare `[MODE: RESEARCH]` at the start of their response.
 
-The `icm-bubble-template.md` and `icm-story-template.md` files serve as an Iterative Context Management template with prompt instructions. When first using this template:
+### 3. **INNOVATE (by AI & human)**
+Brainstorming approaches without implementation. The AI proposes multiple solution strategies, discusses trade-offs, and collaborates with you to select the best approach.
 
-1. Copy the `icm-bubble-template.md` and `icm-story-template.md` file
-2. Rename them to `icm-bubble-yyyy-mm-dd--hh-mm.md` and `icm-story-yyyy-mm-dd--hh-mm.md` (using current timestamp)
-3. Modify the content according to the specific story of the current iteration
-4. Send the prompts from `icm-bubble-yyyy-mm-dd--hh-mm.md` to the AI to start a new iteration
+**Critical**: AI assistants must declare `[MODE: INNOVATE]` at the start of their response.
 
-This approach ensures each development iteration has customized context and prompts while maintaining consistency with the overall project structure.
+### 4. **PLAN (by AI & human)**
+Create comprehensive technical specifications and save them to a timestamped todo file (`todo-yyyy-mm-dd--hh-mm.md`). The plan should be detailed enough to execute mechanically.
 
-## Project Description
+**Critical**: AI assistants must declare `[MODE: PLAN]` at the start of their response.
 
-This project processes and visualizes data from the "Agentic AI Performance Dataset 2025" to answer three key research questions about AI agent capabilities:
+### 5. **EXECUTE (by AI & human)**
+Follow the plan exactly with no creative decisions. The AI implements only what was specified in the plan, ensuring predictable outcomes and preventing scope creep.
 
-1. **Multimodal Agent Types**: Top 3 agent types by multimodal processing capability percentage
-2. **Multimodal Architectures**: Top 3 model architectures by multimodal processing capability percentage
-3. **Bias Detection Performance**: Top 3 task categories by bias detection median scores
+**Critical**: AI assistants must declare `[MODE: EXECUTE]` at the start of their response.
 
-## Features
+### 6. **REVIEW (by AI & human)**
+Validate implementation against the original plan. Check for completeness, correctness, and alignment with requirements. Then return to phase 1 for the next iteration.
 
-- Excel data processing and analysis
-- Interactive HTML dashboard generation
-- Mobile-responsive design with light color scheme
-- Static output (no external dependencies required)
-- Comprehensive data visualization using multiple chart types
+**Critical**: AI assistants must declare `[MODE: REVIEW]` at the start of their response.
 
-## Requirements
+## Getting Started
 
-- Python 3.12
-- Virtual environment (pre-configured)
-- Excel dataset: `first-80-rows-agentic_ai_performance_dataset_20250622.xlsx` (80 records)
+### 1. Set Up Template Files
 
-## Installation & Setup
+The repository includes two template files and one RIPER-5 file:
+- `icm-bubble-template.md` - Starting prompt template
+- `icm-story-template.md` - Story description template
+- `icmwriper-5.md` - Updated RIPER-5 protocol rules
 
-1. **Activate the virtual environment:**
-   ```bash
+### 2. Create Your First Iteration
 
-   # Linux/macOS
-   python3 -m venv venv
-   source venv/bin/activate
+When starting a new iteration:
 
-   # Windows
-   python -m venv venv
-   venv\Scripts\activate
+1. Copy the template files
+2. Rename them to include the current timestamp:
+   - `icm-bubble-yyyy-mm-dd--hh-mm.md`
+   - `icm-story-yyyy-mm-dd--hh-mm.md`
+3. Modify the content according to your specific iteration story
+4. Send the prompts from `icm-bubble-yyyy-mm-dd--hh-mm.md` to your AI assistant
 
-   # exit venv
-   deactivate
-   ```
+### 3. Follow the Workflow
 
-2. **Verify installed packages and Python version:**
-   ```bash
-   python --version
-   pip list
-   ```
-
-## Dependencies
-
-The project includes these pre-installed packages:
-
-- **pandas** (2.3.2) - Data manipulation and analysis
-- **openpyxl** (3.1.5) - Excel file reading
-- **matplotlib** (3.10.6) - Static plotting
-- **seaborn** (0.13.2) - Statistical visualization
-- **plotly** (6.3.0) - Interactive plotting
-- **numpy** (2.3.3) - Numerical computing
-
-## Checking the data analysis result
-
-1. **Run the data analysis script:**
-   ```bash
-   python analyze_data.py # Windows
-   python3 analyze_data.py # macOS/Linux
-   ```
-
-2. **Open the generated dashboard:**
-   ```bash
-   # Open data-dashboard.html in your browser
-   open data-dashboard.html      # macOS
-   start data-dashboard.html     # Windows
-   xdg-open data-dashboard.html  # Linux/WSL
-   ```
-
-## Output Files
-
-- `analyze_data.py` - Python script for data processing and analysis
-- `data-dashboard.html` - Interactive HTML dashboard with visualizations
+Progress through each RIPER-5 phase systematically. Ensure your AI assistant declares the current mode at the start of each response. When the AI ​​stops in each mode and waits for your signals, carefully check the AI's output and, if necessary, ask the AI ​​to make adjustments until you are satisfied before issuing the signal to enter the next mode.
 
 ## Project Structure
 
 ```
-├── venv/                                                   # Python virtual environment
-├── CLAUDE.md                                               # For Claude Code
-├── first-80-rows-agentic_ai_performance_dataset_20250622.xlsx # Excel dataset (80 records)
-├── icm-bubble-template.md                                  # Starting prompt template
-├── icm-story-template.md                                   # Project story template (Chinese)
-├── icmwriper-5.md                                          # ICMwRIPER-5 development protocol
-├── README.md                                               # Project documentation
-├── todo-yyyy-mm-dd--hh-mm.md                               # Task tracking
-├── analyze_data.py                                      # Data processing script (generated)
-└── data-dashboard.html                                     # Visualization dashboard (generated)
+├── icm-bubble-template.md       # Starting prompt template
+├── icm-story-template.md        # Story description template
+├── icmwriper-5.md              # Updated RIPER-5 protocol rules
+├── README.md                   # This file
+├── icm-bubble-yyyy-mm-dd--hh-mm.md   # Iteration prompts (created per iteration)
+├── icm-story-yyyy-mm-dd--hh-mm.md    # Iteration stories (created per iteration)
+└── todo-yyyy-mm-dd--hh-mm.md        # Task tracking (created during PLAN phase)
 ```
 
-## Data Analysis Focus
+## Key Benefits
 
-The dashboard provides insights into:
+- **Controlled AI Behavior**: Explicit mode declarations prevent AI from jumping ahead or making unplanned decisions
+- **Human Oversight**: Each phase requires human review and approval before proceeding
+- **Iterative Refinement**: Regular return to Context Management keeps the project aligned with evolving requirements
+- **Clear Documentation**: Timestamped files create an audit trail of decision-making
+- **Predictable Outcomes**: Separation of planning and execution reduces unexpected surprises
+- **Better Code Quality**: Thorough research and planning phases lead to more thoughtful implementations
 
-- **Agent Type Analysis**: Distribution and capabilities of different AI agent types
-- **Architecture Performance**: Comparison of model architectures and their multimodal capabilities
-- **Bias Detection Metrics**: Fairness performance across different task categories
-- **Statistical Summaries**: Comprehensive data overview and key metrics
+## Use Cases
 
-## Technical Notes
+ICMwRIPER-5 is particularly effective for:
 
-- All visualizations are embedded in the HTML file (no external dependencies)
-- Mobile-responsive design ensures compatibility across devices
-- Light color scheme optimized for readability
-- Dataset contains 80 records of AI agent performance data
+- **Complex Feature Development**: Multi-step features requiring careful planning
+- **Refactoring Projects**: Large-scale code reorganization where AI might otherwise introduce breaking changes
+- **Learning New Codebases**: Systematic exploration before making changes
+- **Team Collaboration**: Clear phases make it easier to hand off work between team members
+- **Quality-Critical Projects**: Applications where correctness is more important than speed
+
+## Best Practices
+
+1. **One Phase at a Time**: Don't skip phases or combine them
+2. **Document Everything**: Keep thorough notes in your story and bubble files
+3. **Review Before Proceeding**: Always validate AI output before moving to the next phase
+4. **Update Context Regularly**: Return to Context Management phase when requirements change
+5. **Enforce Mode Declarations**: Ensure your AI assistant explicitly declares its mode
+6. **Maintain Timestamps**: Use consistent naming for all iteration files
+
+## Contributing
+
+We welcome contributions to improve the ICMwRIPER-5 methodology:
+
+- Share your experience using the method
+- Propose enhancements to the workflow
+- Submit example projects demonstrating the methodology
+- Improve documentation and templates
 
 ## Security
 
 - Handle sensitive operations with appropriate user confirmation
 - Never commit API keys or sensitive data
 - Validate all file operations before execution
+- Review AI-generated code carefully before deployment
+
+## Further Reading
+
+For detailed protocol specifications, see `icmwriper-5.md` in this repository.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+---
+
+The orginial RIPER framework is by: [robotlovehuman](https://forum.cursor.com/t/i-created-an-amazing-mode-called-riper-5-mode-fixes-claude-3-7-drastically/65516)

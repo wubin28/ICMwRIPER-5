@@ -1,4 +1,4 @@
-# ICM-RIPER-5: Iterative Context Management and Research-Innovate-Plan-Execute-Review Method for AI Assisted Software Development
+# RIPER-5 MODE: STRICT OPERATIONAL PROTOCOL (updated by Bin Wu)
 
 ## CONTEXT PRIMER
 
