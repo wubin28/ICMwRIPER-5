@@ -55,12 +55,50 @@ Validate implementation against the original plan. Check for completeness, corre
 
 ## Getting Started
 
-### 1. Set Up Template Files
+### 1. Install the icmwriper-5 Command
 
-The repository includes two template files and one RIPER-5 file:
-- `icm-bubble-template.md` - Starting prompt template
-- `icm-story-template.md` - Story description template
-- `icmwriper-5.md` - Updated RIPER-5 protocol rules
+#### Prerequisites
+- Windows 11 with WSL2 (Ubuntu 24.04 or later)
+- Git installed in WSL2
+- curl installed in WSL2
+
+#### Installation Steps
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/wubin28/ICMwRIPER-5.git
+   cd ICMwRIPER-5
+   ```
+
+2. **Install the command globally**:
+   ```bash
+   sudo cp icmwriper-5 /usr/local/bin/
+   sudo chmod +x /usr/local/bin/icmwriper-5
+   ```
+
+3. **Verify installation**:
+   ```bash
+   which icmwriper-5
+   ```
+
+   You should see: `/usr/local/bin/icmwriper-5`
+
+4. **Test the command**:
+   ```bash
+   icmwriper-5 generate my-test-project
+   ```
+
+   This will create a new directory `my-test-project` with the ICMwRIPER-5 template files.
+
+#### What the Command Does
+
+The `icmwriper-5 generate <project-name>` command:
+- Creates a new project directory with the specified name
+- Downloads the following template files from this repository:
+  - `icm-bubble-template.md` - Starting prompt template
+  - `icm-story-template.md` - Story description template
+  - `icmwriper-5.md` - RIPER-5 protocol rules
+  - `icmwriper-5-README.md` - This README file (renamed from README.md)
 
 ### 2. Create Your First Iteration
 
@@ -82,6 +120,7 @@ Progress through each RIPER-5 phase systematically. Ensure your AI assistant dec
 ```
 ├── icm-bubble-template.md       # Starting prompt template
 ├── icm-story-template.md        # Story description template
+├── icmwriper-5                  # Command-line tool for project generation
 ├── icmwriper-5.md              # Updated RIPER-5 protocol rules
 ├── README.md                   # This file
 ├── icm-bubble-yyyy-mm-dd--hh-mm.md   # Iteration prompts (created per iteration)
