@@ -100,18 +100,139 @@ The `icmwriper-5 generate <project-name>` command:
   - `icmwriper-5.md` - RIPER-5 protocol rules
   - `icmwriper-5-README.md` - This README file (renamed from README.md)
 
-### 2. Create Your First Iteration
+### 2. Command Usage
+
+The `icmwriper-5` command provides 4 subcommands for managing your ICMwRIPER-5 projects:
+
+#### generate - Create New Project
+
+**Syntax**: `icmwriper-5 generate <project-name>`
+
+**Purpose**: Bootstrap a new ICMwRIPER-5 project with template files
+
+**Example**:
+```bash
+icmwriper-5 generate my-kata-project
+```
+
+**What it does**:
+- Creates project directory
+- Downloads 4 template files from GitHub:
+  - `icm-bubble-template.md`
+  - `icm-story-template.md`
+  - `icmwriper-5.md`
+  - `README.md` (renamed to `icmwriper-5-README.md`)
+
+#### story - Create Timestamped Story File
+
+**Syntax**: `icmwriper-5 story <source-story-file>`
+
+**Purpose**: Create a timestamped copy of a story file for the current iteration
+
+**Example**:
+```bash
+icmwriper-5 story icm-story-template.md
+# Output: icm-story-2025-10-03--22-26.md
+```
+
+**What it does**:
+- Copies the source story file
+- Renames it with current timestamp in format `icm-story-yyyy-mm-dd--hh-mm.md`
+
+#### bubble - Create Timestamped Bubble File
+
+**Syntax**: `icmwriper-5 bubble <source-bubble-file>`
+
+**Purpose**: Create a timestamped bubble file that matches the latest story file
+
+**Example**:
+```bash
+icmwriper-5 bubble icm-bubble-template.md
+# Output: icm-bubble-2025-10-03--22-26.md
+```
+
+**What it does**:
+- Finds the latest `icm-story-*.md` file
+- Copies the source bubble file with the same timestamp as the latest story
+- Automatically updates story file references inside the bubble file
+
+**Note**: The bubble file timestamp matches the latest story file, not the current time.
+
+#### snb - Create Matched Story-Bubble Pair
+
+**Syntax**: `icmwriper-5 snb <source-story-file>`
+
+**Purpose**: Create both story and bubble files simultaneously with identical timestamps
+
+**Example**:
+```bash
+icmwriper-5 snb icm-story-template.md
+# Output: icm-story-2025-10-03--22-26.md and icm-bubble-2025-10-03--22-26.md
+```
+
+**What it does**:
+- Copies the source story file with current timestamp
+- Copies `icm-bubble-template.md` with the same timestamp
+- Automatically updates story file references in the bubble file
+
+**Benefit**: Ensures perfect pairing of story and bubble files with one command.
+
+### 3. Context Management and AI Tool Switching
+
+#### Generating Context Files
+
+During project development, you can generate a comprehensive context file to:
+- Switch to other AI tools while preserving project state
+- Clear the current AI chat context and start fresh with full context
+- Share project status with team members
+- Document project milestones
+
+**Context file naming convention**: `icm-context-yyyy-mm-dd--hh-mm.md`
+
+**When to generate**:
+- Before switching from one AI assistant to another
+- When the chat context becomes too large or cluttered
+- After completing major milestones
+- Before taking breaks in development
+
+**How to generate**:
+Ask your AI assistant to create a comprehensive context file documenting:
+- Executive summary of the project
+- Business requirements implemented
+- Technical architecture and design decisions
+- Implementation details
+- Usage examples
+- Current status and next steps
+
+**Example prompt**:
+```
+Please create a comprehensive context file named icm-context-2025-10-03--22-26.md
+documenting the current state of the project, including all implemented features,
+technical architecture, and key design decisions.
+```
+
+**Using context files**:
+- Share the context file with a new AI assistant session
+- Reference it when continuing work after clearing context
+- Include it in project documentation for onboarding
+
+### 4. Create Your First Iteration
 
 When starting a new iteration:
 
-1. Copy the template files
-2. Rename them to include the current timestamp:
-   - `icm-bubble-yyyy-mm-dd--hh-mm.md`
-   - `icm-story-yyyy-mm-dd--hh-mm.md`
-3. Modify the content according to your specific iteration story
-4. Send the prompts from `icm-bubble-yyyy-mm-dd--hh-mm.md` to your AI assistant
+1. Use the `snb` command to create matched story-bubble files:
+   ```bash
+   icmwriper-5 snb icm-story-template.md
+   ```
+   Or create them separately using `story` and `bubble` commands.
 
-### 3. Follow the Workflow
+2. Edit the generated story file (`icm-story-yyyy-mm-dd--hh-mm.md`) according to your specific iteration requirements
+
+3. Edit the generated bubble file (`icm-bubble-yyyy-mm-dd--hh-mm.md`) with appropriate prompts for your AI assistant
+
+4. Send the prompts from `icm-bubble-yyyy-mm-dd--hh-mm.md` to your AI assistant to begin the RIPER-5 workflow
+
+### 5. Follow the Workflow
 
 Progress through each RIPER-5 phase systematically. Ensure your AI assistant declares the current mode at the start of each response. When the AI ​​stops in each mode and waits for your signals, carefully check the AI's output and, if necessary, ask the AI ​​to make adjustments until you are satisfied before issuing the signal to enter the next mode.
 
