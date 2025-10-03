@@ -28,6 +28,7 @@ Iteration-specific files use timestamp format `yyyy-mm-dd--hh-mm`:
 - `icm-bubble-yyyy-mm-dd--hh-mm.md` - AI prompts for specific iteration
 - `icm-story-yyyy-mm-dd--hh-mm.md` - Requirements for specific iteration
 - `todo-yyyy-mm-dd--hh-mm.md` - Task checklist (created during PLAN mode)
+- `icm-context-yyyy-mm-dd--hh-mm.md` - Context snapshots for AI tool switching/context management
 
 ## Workflow Overview
 
@@ -46,6 +47,65 @@ Only transition when user explicitly signals:
 - "ENTER EXECUTE MODE"
 - "ENTER REVIEW MODE"
 
+## CLI Tool Commands
+
+The repository includes a bash script `icmwriper-5` that provides 4 subcommands for project management:
+
+### generate - Bootstrap New Projects
+
+**Command**: `icmwriper-5 generate <project-name>`
+
+Creates a new project directory and downloads template files from GitHub.
+
+### story - Create Timestamped Story Files
+
+**Command**: `icmwriper-5 story <source-story-file>`
+
+Copies a story file with current timestamp format `icm-story-yyyy-mm-dd--hh-mm.md`.
+
+### bubble - Create Timestamped Bubble Files
+
+**Command**: `icmwriper-5 bubble <source-bubble-file>`
+
+Copies a bubble file using the timestamp from the latest story file. Automatically updates story file references inside the bubble file.
+
+**Important**: The bubble file timestamp matches the latest story file, NOT the current time.
+
+### snb - Create Matched Story-Bubble Pairs
+
+**Command**: `icmwriper-5 snb <source-story-file>`
+
+Creates both story and bubble files with identical timestamps in one command. This is the recommended approach for starting new iterations.
+
+**What it does**:
+- Copies the source story file with current timestamp
+- Copies `icm-bubble-template.md` with the same timestamp
+- Automatically updates story references in the bubble file
+
+## Context Management
+
+Users may request you to generate comprehensive context files (`icm-context-yyyy-mm-dd--hh-mm.md`) to:
+- Switch to other AI tools while preserving project state
+- Clear the current chat context and start fresh with full context
+- Document project milestones
+- Share project status with team members
+
+When asked to create a context file, include:
+- Executive summary of the project
+- Business requirements implemented
+- Technical architecture and design decisions
+- Implementation details
+- Usage examples
+- Current status and next steps
+
+These context files serve as handoff documents between AI sessions or AI tools.
+
 ## Repository Structure
 
 This is a documentation/methodology repository with no build, test, or deployment commands. All files are Markdown templates and specifications.
+
+# important-instruction-reminders
+Do what has been asked; nothing more, nothing less.
+NEVER create files unless they're absolutely necessary for achieving your goal.
+ALWAYS prefer editing an existing file to creating a new one.
+NEVER proactively create documentation files (*.md) or README files. Only create documentation files if explicitly requested by the User.
