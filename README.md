@@ -1,6 +1,8 @@
 # ICMwRIPER-5 (Iterative Context Management with RIPER-5) Method
 
-An AI-assisted software development methodology that iteratively applies 1 human-driven Context Management step and 5 [RIPER-5](https://forum.cursor.com/t/i-created-an-amazing-mode-called-riper-5-mode-fixes-claude-3-7-drastically/65516) rules (Research, Innovate, Plan, Execute, Review) to guide AI code generation, producing higher-quality code that better meets your requirements.
+A cross-platform AI-assisted software development methodology that iteratively applies 1 human-driven Context Management step and 5 [RIPER-5](https://forum.cursor.com/t/i-created-an-amazing-mode-called-riper-5-mode-fixes-claude-3-7-drastically/65516) rules (Research, Innovate, Plan, Execute, Review) to guide AI code generation, producing higher-quality code that better meets your requirements.
+
+**Supported Platforms**: Ubuntu (WSL2) and macOS
 
 ## The Problem
 
@@ -15,6 +17,24 @@ Directly presenting final requirements to AI often leads to code generation that
 ## The Solution: ICMwRIPER-5 Method
 
 ICMwRIPER-5 provides a structured, iterative approach that keeps both human and AI aligned throughout the development lifecycle. By separating concerns into distinct phases and maintaining clear context management, this method ensures that AI-generated code stays on track and meets actual requirements.
+
+## Platform Support
+
+ICMwRIPER-5 provides native command-line tools for both Ubuntu and macOS environments:
+
+### Ubuntu (WSL2)
+- **Environment**: Windows 11 with WSL2 (Ubuntu 24.04 or later)
+- **Command**: `icmwriper-5-for-ubuntu`
+- **Installation**: Global installation to `/usr/local/bin/`
+- **Prerequisites**: Git, curl
+
+### macOS
+- **Environment**: macOS Sequoia 15.6.1 or later
+- **Command**: `./icmwriper-5-for-macos` (local script)
+- **Installation**: Local script usage
+- **Prerequisites**: iTerm2, zsh, Git, curl
+
+Both implementations provide identical functionality with platform-specific optimizations for the best native experience.
 
 ## How It Works
 
@@ -55,7 +75,9 @@ Validate implementation against the original plan. Check for completeness, corre
 
 ## Getting Started
 
-### 1. Install the icmwriper-5-for-ubuntu Command
+Choose your platform and follow the corresponding installation instructions:
+
+### 1. Ubuntu Installation (WSL2)
 
 #### Prerequisites
 - Windows 11 with WSL2 (Ubuntu 24.04 or later)
@@ -90,9 +112,38 @@ Validate implementation against the original plan. Check for completeness, corre
 
    This will create a new directory `my-test-project` with the ICMwRIPER-5 template files.
 
-#### What the Command Does
+### 2. macOS Installation
 
-The `icmwriper-5-for-ubuntu generate <project-name>` command:
+#### Prerequisites
+- macOS Sequoia 15.6.1 or later
+- iTerm2 terminal application
+- zsh shell (default on modern macOS)
+- Git installed (via Xcode Command Line Tools or Homebrew)
+- curl installed (included with macOS)
+
+#### Installation Steps
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/wubin28/ICMwRIPER-5.git
+   cd ICMwRIPER-5
+   ```
+
+2. **Make the script executable**:
+   ```bash
+   chmod +x icmwriper-5-for-macos
+   ```
+
+3. **Test the command**:
+   ```bash
+   ./icmwriper-5-for-macos generate my-test-project
+   ```
+
+   This will create a new directory `my-test-project` with the ICMwRIPER-5 template files.
+
+#### What the Commands Do
+
+Both `icmwriper-5-for-ubuntu` and `icmwriper-5-for-macos` provide identical functionality:
 - Creates a new project directory with the specified name
 - Downloads the following template files from this repository:
   - `icm-bubble-template.md` - Starting prompt template
@@ -100,19 +151,32 @@ The `icmwriper-5-for-ubuntu generate <project-name>` command:
   - `icmwriper-5.md` - RIPER-5 protocol rules
   - `icmwriper-5-README.md` - This README file (renamed from README.md)
 
-### 2. Command Usage
+### 3. Command Usage
 
-The `icmwriper-5-for-ubuntu` command provides 4 subcommands for managing your ICMwRIPER-5 projects:
+Both platform commands provide 4 subcommands for managing your ICMwRIPER-5 projects:
+
+**Command syntax**:
+- **Ubuntu**: `icmwriper-5-for-ubuntu <subcommand> <argument>`
+- **macOS**: `./icmwriper-5-for-macos <subcommand> <argument>`
 
 #### generate - Create New Project
 
-**Syntax**: `icmwriper-5-for-ubuntu generate <project-name>`
+**Syntax**:
+- **Ubuntu**: `icmwriper-5-for-ubuntu generate <project-name>`
+- **macOS**: `./icmwriper-5-for-macos generate <project-name>`
 
 **Purpose**: Bootstrap a new ICMwRIPER-5 project with template files
 
-**Example**:
+**Examples**:
+
+**Ubuntu**:
 ```bash
 icmwriper-5-for-ubuntu generate my-kata-project
+```
+
+**macOS**:
+```bash
+./icmwriper-5-for-macos generate my-kata-project
 ```
 
 **What it does**:
@@ -125,14 +189,24 @@ icmwriper-5-for-ubuntu generate my-kata-project
 
 #### story - Create Timestamped Story File
 
-**Syntax**: `icmwriper-5-for-ubuntu story <source-story-file>`
+**Syntax**:
+- **Ubuntu**: `icmwriper-5-for-ubuntu story <source-story-file>`
+- **macOS**: `./icmwriper-5-for-macos story <source-story-file>`
 
 **Purpose**: Create a timestamped copy of a story file for the current iteration
 
-**Example**:
+**Examples**:
+
+**Ubuntu**:
 ```bash
 icmwriper-5-for-ubuntu story icm-story-template.md
 # Output: icm-story-2025-10-03--22-26.md
+```
+
+**macOS**:
+```bash
+./icmwriper-5-for-macos story icm-story-template.md
+# Output: icm-story-2025-10-05--23-32.md
 ```
 
 **What it does**:
@@ -141,14 +215,24 @@ icmwriper-5-for-ubuntu story icm-story-template.md
 
 #### bubble - Create Timestamped Bubble File
 
-**Syntax**: `icmwriper-5-for-ubuntu bubble <source-bubble-file>`
+**Syntax**:
+- **Ubuntu**: `icmwriper-5-for-ubuntu bubble <source-bubble-file>`
+- **macOS**: `./icmwriper-5-for-macos bubble <source-bubble-file>`
 
 **Purpose**: Create a timestamped bubble file that matches the latest story file
 
-**Example**:
+**Examples**:
+
+**Ubuntu**:
 ```bash
 icmwriper-5-for-ubuntu bubble icm-bubble-template.md
 # Output: icm-bubble-2025-10-03--22-26.md
+```
+
+**macOS**:
+```bash
+./icmwriper-5-for-macos bubble icm-bubble-template.md
+# Output: icm-bubble-2025-10-05--23-32.md
 ```
 
 **What it does**:
@@ -160,14 +244,24 @@ icmwriper-5-for-ubuntu bubble icm-bubble-template.md
 
 #### snb - Create Matched Story-Bubble Pair
 
-**Syntax**: `icmwriper-5-for-ubuntu snb <source-story-file>`
+**Syntax**:
+- **Ubuntu**: `icmwriper-5-for-ubuntu snb <source-story-file>`
+- **macOS**: `./icmwriper-5-for-macos snb <source-story-file>`
 
 **Purpose**: Create both story and bubble files simultaneously with identical timestamps
 
-**Example**:
+**Examples**:
+
+**Ubuntu**:
 ```bash
 icmwriper-5-for-ubuntu snb icm-story-template.md
 # Output: icm-story-2025-10-03--22-26.md and icm-bubble-2025-10-03--22-26.md
+```
+
+**macOS**:
+```bash
+./icmwriper-5-for-macos snb icm-story-template.md
+# Output: icm-story-2025-10-05--23-33.md and icm-bubble-2025-10-05--23-33.md
 ```
 
 **What it does**:
@@ -177,7 +271,7 @@ icmwriper-5-for-ubuntu snb icm-story-template.md
 
 **Benefit**: Ensures perfect pairing of story and bubble files with one command.
 
-### 3. Context Management and AI Tool Switching
+### 4. Context Management and AI Tool Switching
 
 #### Generating Context Files
 
@@ -216,14 +310,22 @@ technical architecture, and key design decisions.
 - Reference it when continuing work after clearing context
 - Include it in project documentation for onboarding
 
-### 4. Create Your First Iteration
+### 5. Create Your First Iteration
 
 When starting a new iteration:
 
 1. Use the `snb` command to create matched story-bubble files:
+
+   **Ubuntu**:
    ```bash
    icmwriper-5-for-ubuntu snb icm-story-template.md
    ```
+
+   **macOS**:
+   ```bash
+   ./icmwriper-5-for-macos snb icm-story-template.md
+   ```
+
    Or create them separately using `story` and `bubble` commands.
 
 2. Edit the generated story file (`icm-story-yyyy-mm-dd--hh-mm.md`) according to your specific iteration requirements
@@ -232,21 +334,23 @@ When starting a new iteration:
 
 4. Send the prompts from `icm-bubble-yyyy-mm-dd--hh-mm.md` to your AI assistant to begin the RIPER-5 workflow
 
-### 5. Follow the Workflow
+### 6. Follow the Workflow
 
 Progress through each RIPER-5 phase systematically. Ensure your AI assistant declares the current mode at the start of each response. When the AI ​​stops in each mode and waits for your signals, carefully check the AI's output and, if necessary, ask the AI ​​to make adjustments until you are satisfied before issuing the signal to enter the next mode.
 
 ## Project Structure
 
 ```
-├── icm-bubble-template.md       # Starting prompt template
-├── icm-story-template.md        # Story description template
-├── icmwriper-5-for-ubuntu                  # Command-line tool for project generation
-├── icmwriper-5.md              # Updated RIPER-5 protocol rules
-├── README.md                   # This file
-├── icm-bubble-yyyy-mm-dd--hh-mm.md   # Iteration prompts (created per iteration)
-├── icm-story-yyyy-mm-dd--hh-mm.md    # Iteration stories (created per iteration)
-└── todo-yyyy-mm-dd--hh-mm.md        # Task tracking (created during PLAN phase)
+├── icm-bubble-template.md              # Starting prompt template
+├── icm-story-template.md               # Story description template
+├── icmwriper-5-for-ubuntu              # Command-line tool for Ubuntu (WSL2)
+├── icmwriper-5-for-macos               # Command-line tool for macOS
+├── icmwriper-5.md                      # Updated RIPER-5 protocol rules
+├── README.md                           # This file
+├── icm-bubble-yyyy-mm-dd--hh-mm.md     # Iteration prompts (created per iteration)
+├── icm-story-yyyy-mm-dd--hh-mm.md      # Iteration stories (created per iteration)
+├── icm-context-yyyy-mm-dd--hh-mm.md    # Context snapshots (for AI tool switching)
+└── todo-yyyy-mm-dd--hh-mm.md           # Task tracking (created during PLAN phase)
 ```
 
 ## Key Benefits
@@ -276,6 +380,10 @@ ICMwRIPER-5 is particularly effective for:
 4. **Update Context Regularly**: Return to Context Management phase when requirements change
 5. **Enforce Mode Declarations**: Ensure your AI assistant explicitly declares its mode
 6. **Maintain Timestamps**: Use consistent naming for all iteration files
+7. **Platform Consistency**: When working on cross-platform projects, test changes on both Ubuntu and macOS versions
+8. **Command Usage**: Use the appropriate command for your platform:
+   - Ubuntu: Use `icmwriper-5-for-ubuntu` after global installation
+   - macOS: Use `./icmwriper-5-for-macos` as a local script
 
 ## Contributing
 
