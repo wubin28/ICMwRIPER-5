@@ -49,23 +49,23 @@ Only transition when user explicitly signals:
 
 ## CLI Tool Commands
 
-The repository includes a bash script `icmwriper-5` that provides 4 subcommands for project management:
+The repository includes a bash script `icmwriper-5-for-ubuntu` that provides 4 subcommands for project management:
 
 ### generate - Bootstrap New Projects
 
-**Command**: `icmwriper-5 generate <project-name>`
+**Command**: `icmwriper-5-for-ubuntu generate <project-name>`
 
 Creates a new project directory and downloads template files from GitHub.
 
 ### story - Create Timestamped Story Files
 
-**Command**: `icmwriper-5 story <source-story-file>`
+**Command**: `icmwriper-5-for-ubuntu story <source-story-file>`
 
 Copies a story file with current timestamp format `icm-story-yyyy-mm-dd--hh-mm.md`.
 
 ### bubble - Create Timestamped Bubble Files
 
-**Command**: `icmwriper-5 bubble <source-bubble-file>`
+**Command**: `icmwriper-5-for-ubuntu bubble <source-bubble-file>`
 
 Copies a bubble file using the timestamp from the latest story file. Automatically updates story file references inside the bubble file.
 
@@ -73,7 +73,7 @@ Copies a bubble file using the timestamp from the latest story file. Automatical
 
 ### snb - Create Matched Story-Bubble Pairs
 
-**Command**: `icmwriper-5 snb <source-story-file>`
+**Command**: `icmwriper-5-for-ubuntu snb <source-story-file>`
 
 Creates both story and bubble files with identical timestamps in one command. This is the recommended approach for starting new iterations.
 

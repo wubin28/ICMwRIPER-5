@@ -55,7 +55,7 @@ Validate implementation against the original plan. Check for completeness, corre
 
 ## Getting Started
 
-### 1. Install the icmwriper-5 Command
+### 1. Install the icmwriper-5-for-ubuntu Command
 
 #### Prerequisites
 - Windows 11 with WSL2 (Ubuntu 24.04 or later)
@@ -72,27 +72,27 @@ Validate implementation against the original plan. Check for completeness, corre
 
 2. **Install the command globally**:
    ```bash
-   sudo cp icmwriper-5 /usr/local/bin/
-   sudo chmod +x /usr/local/bin/icmwriper-5
+   sudo cp icmwriper-5-for-ubuntu /usr/local/bin/
+   sudo chmod +x /usr/local/bin/icmwriper-5-for-ubuntu
    ```
 
 3. **Verify installation**:
    ```bash
-   which icmwriper-5
+   which icmwriper-5-for-ubuntu
    ```
 
-   You should see: `/usr/local/bin/icmwriper-5`
+   You should see: `/usr/local/bin/icmwriper-5-for-ubuntu`
 
 4. **Test the command**:
    ```bash
-   icmwriper-5 generate my-test-project
+   icmwriper-5-for-ubuntu generate my-test-project
    ```
 
    This will create a new directory `my-test-project` with the ICMwRIPER-5 template files.
 
 #### What the Command Does
 
-The `icmwriper-5 generate <project-name>` command:
+The `icmwriper-5-for-ubuntu generate <project-name>` command:
 - Creates a new project directory with the specified name
 - Downloads the following template files from this repository:
   - `icm-bubble-template.md` - Starting prompt template
@@ -102,17 +102,17 @@ The `icmwriper-5 generate <project-name>` command:
 
 ### 2. Command Usage
 
-The `icmwriper-5` command provides 4 subcommands for managing your ICMwRIPER-5 projects:
+The `icmwriper-5-for-ubuntu` command provides 4 subcommands for managing your ICMwRIPER-5 projects:
 
 #### generate - Create New Project
 
-**Syntax**: `icmwriper-5 generate <project-name>`
+**Syntax**: `icmwriper-5-for-ubuntu generate <project-name>`
 
 **Purpose**: Bootstrap a new ICMwRIPER-5 project with template files
 
 **Example**:
 ```bash
-icmwriper-5 generate my-kata-project
+icmwriper-5-for-ubuntu generate my-kata-project
 ```
 
 **What it does**:
@@ -125,13 +125,13 @@ icmwriper-5 generate my-kata-project
 
 #### story - Create Timestamped Story File
 
-**Syntax**: `icmwriper-5 story <source-story-file>`
+**Syntax**: `icmwriper-5-for-ubuntu story <source-story-file>`
 
 **Purpose**: Create a timestamped copy of a story file for the current iteration
 
 **Example**:
 ```bash
-icmwriper-5 story icm-story-template.md
+icmwriper-5-for-ubuntu story icm-story-template.md
 # Output: icm-story-2025-10-03--22-26.md
 ```
 
@@ -141,13 +141,13 @@ icmwriper-5 story icm-story-template.md
 
 #### bubble - Create Timestamped Bubble File
 
-**Syntax**: `icmwriper-5 bubble <source-bubble-file>`
+**Syntax**: `icmwriper-5-for-ubuntu bubble <source-bubble-file>`
 
 **Purpose**: Create a timestamped bubble file that matches the latest story file
 
 **Example**:
 ```bash
-icmwriper-5 bubble icm-bubble-template.md
+icmwriper-5-for-ubuntu bubble icm-bubble-template.md
 # Output: icm-bubble-2025-10-03--22-26.md
 ```
 
@@ -160,13 +160,13 @@ icmwriper-5 bubble icm-bubble-template.md
 
 #### snb - Create Matched Story-Bubble Pair
 
-**Syntax**: `icmwriper-5 snb <source-story-file>`
+**Syntax**: `icmwriper-5-for-ubuntu snb <source-story-file>`
 
 **Purpose**: Create both story and bubble files simultaneously with identical timestamps
 
 **Example**:
 ```bash
-icmwriper-5 snb icm-story-template.md
+icmwriper-5-for-ubuntu snb icm-story-template.md
 # Output: icm-story-2025-10-03--22-26.md and icm-bubble-2025-10-03--22-26.md
 ```
 
@@ -222,7 +222,7 @@ When starting a new iteration:
 
 1. Use the `snb` command to create matched story-bubble files:
    ```bash
-   icmwriper-5 snb icm-story-template.md
+   icmwriper-5-for-ubuntu snb icm-story-template.md
    ```
    Or create them separately using `story` and `bubble` commands.
 
@@ -241,7 +241,7 @@ Progress through each RIPER-5 phase systematically. Ensure your AI assistant dec
 ```
 ├── icm-bubble-template.md       # Starting prompt template
 ├── icm-story-template.md        # Story description template
-├── icmwriper-5                  # Command-line tool for project generation
+├── icmwriper-5-for-ubuntu                  # Command-line tool for project generation
 ├── icmwriper-5.md              # Updated RIPER-5 protocol rules
 ├── README.md                   # This file
 ├── icm-bubble-yyyy-mm-dd--hh-mm.md   # Iteration prompts (created per iteration)
