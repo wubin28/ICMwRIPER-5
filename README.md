@@ -36,8 +36,8 @@ ICMwRIPER-5 provides native command-line tools for Ubuntu, macOS, and Windows Po
 
 ### Windows PowerShell
 - **Environment**: Windows 11 with PowerShell 7.5.3 or later
-- **Command**: `pwsh -File icmwriper-5-for-pwsh.ps1` (PowerShell script)
-- **Installation**: Local script usage
+- **Command**: `icmwriper-5.ps1` (after global install) or `pwsh -File icmwriper-5-for-pwsh.ps1` (local script)
+- **Installation**: Optional global installation to user PATH or local script usage
 - **Prerequisites**: PowerShell 7.5.3+, Git
 
 All three implementations provide identical functionality with platform-specific optimizations for the best native experience.
@@ -162,7 +162,33 @@ Choose your platform and follow the corresponding installation instructions:
    cd ICMwRIPER-5
    ```
 
-2. **Test the command**:
+2. **Install the command globally** (optional but recommended):
+   ```powershell
+   # Create user scripts directory if it doesn't exist
+   $userScriptsPath = "$env:USERPROFILE\Documents\PowerShell\Scripts"
+   New-Item -Path $userScriptsPath -ItemType Directory -Force
+
+   # Copy script to user scripts directory
+   Copy-Item icmwriper-5-for-pwsh.ps1 $userScriptsPath\
+
+   # Add scripts directory to PATH environment variable
+   $env:PATH += ";$userScriptsPath"
+   [Environment]::SetEnvironmentVariable("PATH", $env:PATH + ";$userScriptsPath", "User")
+
+   # Create simplified command wrapper
+   @"
+   #!/usr/bin/env pwsh
+   & "$userScriptsPath\icmwriper-5-for-pwsh.ps1" @args
+   "@ | Out-File -FilePath "$userScriptsPath\icmwriper-5.ps1" -Encoding UTF8
+   ```
+
+3. **Verify installation** (if globally installed):
+   ```powershell
+   # Restart PowerShell session, then test
+   icmwriper-5.ps1 generate my-test-project
+   ```
+
+4. **Alternative: Test without global installation**:
    ```powershell
    pwsh -File icmwriper-5-for-pwsh.ps1 generate my-test-project
    ```
@@ -186,14 +212,14 @@ All three platform commands provide 6 subcommands for managing your ICMwRIPER-5 
 **Command syntax**:
 - **Ubuntu**: `icmwriper-5-for-ubuntu <subcommand> <argument>`
 - **macOS**: `./icmwriper-5-for-macos <subcommand> <argument>`
-- **Windows**: `pwsh -File icmwriper-5-for-pwsh.ps1 <subcommand> <argument>`
+- **Windows**: `icmwriper-5.ps1 <subcommand> <argument>` (after global install) or `pwsh -File icmwriper-5-for-pwsh.ps1 <subcommand> <argument>` (local script)
 
 #### generate - Create New Project
 
 **Syntax**:
 - **Ubuntu**: `icmwriper-5-for-ubuntu generate <project-name>`
 - **macOS**: `./icmwriper-5-for-macos generate <project-name>`
-- **Windows**: `pwsh -File icmwriper-5-for-pwsh.ps1 generate <project-name>`
+- **Windows**: `icmwriper-5.ps1 generate <project-name>` (global) or `pwsh -File icmwriper-5-for-pwsh.ps1 generate <project-name>` (local)
 
 **Purpose**: Bootstrap a new ICMwRIPER-5 project with template files
 
@@ -211,6 +237,10 @@ icmwriper-5-for-ubuntu generate my-kata-project
 
 **Windows PowerShell**:
 ```powershell
+# After global installation
+icmwriper-5.ps1 generate my-kata-project
+
+# Or without global installation
 pwsh -File icmwriper-5-for-pwsh.ps1 generate my-kata-project
 ```
 
@@ -442,6 +472,10 @@ When starting a new iteration:
 
    **Windows PowerShell**:
    ```powershell
+   # After global installation
+   icmwriper-5.ps1 snb icm-story-template.md
+
+   # Or without global installation
    pwsh -File icmwriper-5-for-pwsh.ps1 snb icm-story-template.md
    ```
 
@@ -505,7 +539,7 @@ ICMwRIPER-5 is particularly effective for:
 8. **Command Usage**: Use the appropriate command for your platform:
    - Ubuntu: Use `icmwriper-5-for-ubuntu` after global installation
    - macOS: Use `./icmwriper-5-for-macos` as a local script
-   - Windows: Use `pwsh -File icmwriper-5-for-pwsh.ps1` for PowerShell execution
+   - Windows: Use `icmwriper-5.ps1` after global installation, or `pwsh -File icmwriper-5-for-pwsh.ps1` for local script execution
 
 ## Contributing
 
