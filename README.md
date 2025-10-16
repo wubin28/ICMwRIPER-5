@@ -164,29 +164,38 @@ Choose your platform and follow the corresponding installation instructions:
 
 2. **Install the command globally** (optional but recommended):
 
-   Execute the following code in PowerShell by copying and pasting in segments:
+   **IMPORTANT**: Execute each segment separately by copying and pasting one at a time:
 
+   **Segment 1: Create directory and copy file**
    ```powershell
-   # Segment 1: Create directory and copy file
    $userScriptsPath = "$env:USERPROFILE\Documents\PowerShell\Scripts"
    New-Item -Path $userScriptsPath -ItemType Directory -Force
    Copy-Item icmwriper-5-for-pwsh.ps1 $userScriptsPath\
+   ```
 
-   # Segment 2: Set environment variables
+   **Segment 2: Set environment variables**
+   ```powershell
    $env:PATH += ";$userScriptsPath"
    [Environment]::SetEnvironmentVariable("PATH", $env:PATH + ";$userScriptsPath", "User")
+   ```
 
-   # Segment 3: Create command wrapper
+   **Segment 3: Create command wrapper**
+   ```powershell
    @"
    #!/usr/bin/env pwsh
    & "$userScriptsPath\icmwriper-5-for-pwsh.ps1" @args
    "@ | Out-File -FilePath "$userScriptsPath\icmwriper-5.ps1" -Encoding UTF8
    ```
 
+   **Notes**:
+   - Do NOT include comment lines (like `# Segment 3:`) when copying Segment 3
+   - The `@"` must be at the end of a line, and `"@` must be at the beginning of a new line with no leading spaces
+   - If you get stuck after pasting and see only blank lines, press `Ctrl+C` to cancel, then copy only the code without comments
+
 3. **Verify installation** (if globally installed):
    ```powershell
    # Restart PowerShell session, then test
-   icmwriper-5.ps1 generate my-test-project
+   icmwriper-5-for-pwsh.ps1 generate my-test-project
    ```
 
 4. **Alternative: Test without global installation**:
