@@ -389,17 +389,22 @@ pwsh -File icmwriper-5-for-pwsh.ps1 bubble-log
 # Output: bubble-2025-10-16--12-15.md
 ```
 
+**macOS**:
+```bash
+./icmwriper-5-for-macos bubble-log
+# Output: bubble-2025-10-16--22-25.md
+```
+
 **What it does**:
 - Creates an empty (0-byte) markdown file with current timestamp
 - Uses current system timestamp (independent of story files)
 - Useful for quick session notes or logging
 
-**Note**: Currently available on Ubuntu and Windows PowerShell only (not yet implemented for macOS).
-
 #### generate-html-data-dashboard - Create Data Dashboard Project
 
 **Syntax**:
 - **Ubuntu**: `icmwriper-5-for-ubuntu generate-html-data-dashboard <project-name>`
+- **macOS**: `./icmwriper-5-for-macos generate-html-data-dashboard <project-name>`
 - **Windows**: `pwsh -File icmwriper-5-for-pwsh.ps1 generate-html-data-dashboard <project-name>`
 
 **Purpose**: Bootstrap a new ICMwRIPER-5 project with additional data dashboard resources
@@ -409,6 +414,11 @@ pwsh -File icmwriper-5-for-pwsh.ps1 bubble-log
 **Ubuntu**:
 ```bash
 icmwriper-5-for-ubuntu generate-html-data-dashboard my-dashboard-project
+```
+
+**macOS**:
+```bash
+./icmwriper-5-for-macos generate-html-data-dashboard my-dashboard-project
 ```
 
 **Windows PowerShell**:
@@ -422,8 +432,6 @@ pwsh -File icmwriper-5-for-pwsh.ps1 generate-html-data-dashboard my-dashboard-pr
   - `first-80-rows-agentic_ai_performance_dataset_20250622.xlsx` - Sample dataset
   - `.gitignore` - Git ignore configuration
 - Specialized for Python/HTML/CSS/JavaScript data visualization projects
-
-**Note**: Currently available on Ubuntu and Windows PowerShell only (not yet implemented for macOS).
 
 ### 5. Context Management and AI Tool Switching
 
