@@ -206,7 +206,7 @@ elif [ "$1" = "generate-html-data-dashboard" ]; then
     ROOT_FILES=("icm-bubble-template.md" "icm-story-template.md" "icmwriper-5.md" "README.md")
 
     # Subdirectory files (2 files)
-    SUBDIR_FILES=("for-py-html-css-js-by-data-dashboard/first-80-rows-agentic_ai_performance_dataset_20250622.xlsx" "for-py-html-css-js-by-data-dashboard/.gitignore")
+    SUBDIR_FILES=("for-html-data-dashboard/first-80-rows-agentic_ai_performance_dataset_20250622.xlsx" "for-html-data-dashboard/.gitignore")
 
     # Create project directory
     if ! mkdir "$PROJECT_NAME"; then

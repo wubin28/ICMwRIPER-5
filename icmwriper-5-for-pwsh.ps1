@@ -295,8 +295,8 @@ switch ($SubCommand) {
 
         # Subdirectory files (2 files)
         $subdirFiles = @(
-            "for-py-html-css-js-by-data-dashboard/first-80-rows-agentic_ai_performance_dataset_20250622.xlsx",
-            "for-py-html-css-js-by-data-dashboard/.gitignore"
+            "for-html-data-dashboard/first-80-rows-agentic_ai_performance_dataset_20250622.xlsx",
+            "for-html-data-dashboard/.gitignore"
         )
 
         # Create project directory
