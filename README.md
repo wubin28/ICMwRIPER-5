@@ -163,19 +163,20 @@ Choose your platform and follow the corresponding installation instructions:
    ```
 
 2. **Install the command globally** (optional but recommended):
+
+   Execute the following code in PowerShell by copying and pasting in segments:
+
    ```powershell
-   # Create user scripts directory if it doesn't exist
+   # Segment 1: Create directory and copy file
    $userScriptsPath = "$env:USERPROFILE\Documents\PowerShell\Scripts"
    New-Item -Path $userScriptsPath -ItemType Directory -Force
-
-   # Copy script to user scripts directory
    Copy-Item icmwriper-5-for-pwsh.ps1 $userScriptsPath\
 
-   # Add scripts directory to PATH environment variable
+   # Segment 2: Set environment variables
    $env:PATH += ";$userScriptsPath"
    [Environment]::SetEnvironmentVariable("PATH", $env:PATH + ";$userScriptsPath", "User")
 
-   # Create simplified command wrapper
+   # Segment 3: Create command wrapper
    @"
    #!/usr/bin/env pwsh
    & "$userScriptsPath\icmwriper-5-for-pwsh.ps1" @args
