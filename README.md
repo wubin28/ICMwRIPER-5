@@ -217,7 +217,10 @@ All three commands (`icmwriper-5-for-ubuntu`, `icmwriper-5-for-macos`, and `icmw
 
 ### 4. Command Usage
 
-All three platform commands provide 3 essential subcommands for managing your ICMwRIPER-5 projects:
+The platform commands provide essential subcommands for managing your ICMwRIPER-5 projects:
+- **Ubuntu**: 4 subcommands (includes Next.js web app support)
+- **macOS**: 3 subcommands
+- **Windows PowerShell**: 3 subcommands
 
 **Command syntax**:
 - **Ubuntu**: `icmwriper-5-for-ubuntu <subcommand> <argument>`
@@ -325,6 +328,30 @@ pwsh -File icmwriper-5-for-pwsh.ps1 generate-html-data-dashboard my-dashboard-pr
   - `first-80-rows-agentic_ai_performance_dataset_20250622.xlsx` - Sample dataset
   - `.gitignore` - Git ignore configuration
 - Specialized for Python/HTML/CSS/JavaScript data visualization projects
+
+#### generate-nextjs-web-app - Create Next.js Web App Project (Ubuntu Only)
+
+**Syntax**:
+- **Ubuntu**: `icmwriper-5-for-ubuntu generate-nextjs-web-app <project-name>`
+
+**Purpose**: Bootstrap a new ICMwRIPER-5 project with Next.js web app resources
+
+**Examples**:
+
+**Ubuntu**:
+```bash
+icmwriper-5-for-ubuntu generate-nextjs-web-app my-nextjs-app
+```
+
+**What it does**:
+- Creates project directory with 5 files
+- Downloads standard template files plus:
+  - `icm-bubble-template-for-nextjs-web-app.md` - Next.js-specific bubble template
+  - `icm-story-template-for-nextjs-web-app.md` - Next.js-specific story template
+  - `.gitignore` - Next.js-specific Git ignore configuration
+- Specialized for Next.js/React/TypeScript web application projects
+
+**Platform availability**: Ubuntu only (as of 2025-10-17)
 
 ### 5. Context Management and AI Tool Switching
 
