@@ -2,7 +2,7 @@
 
 A cross-platform AI-assisted software development methodology that iteratively applies 1 human-driven Context Management step and 5 [RIPER-5](https://forum.cursor.com/t/i-created-an-amazing-mode-called-riper-5-mode-fixes-claude-3-7-drastically/65516) rules (Research, Innovate, Plan, Execute, Review) to guide AI code generation, producing higher-quality code that better meets your requirements.
 
-**Supported Platforms**: Ubuntu (WSL2) and macOS
+**Supported Platforms**: Ubuntu (WSL2), macOS, and Windows PowerShell
 
 ## The Problem
 
@@ -20,7 +20,7 @@ ICMwRIPER-5 provides a structured, iterative approach that keeps both human and 
 
 ## Platform Support
 
-ICMwRIPER-5 provides native command-line tools for both Ubuntu and macOS environments:
+ICMwRIPER-5 provides native command-line tools for Ubuntu, macOS, and Windows PowerShell environments:
 
 ### Ubuntu (WSL2)
 - **Environment**: Windows 11 with WSL2 (Ubuntu 24.04 or later)
@@ -34,7 +34,13 @@ ICMwRIPER-5 provides native command-line tools for both Ubuntu and macOS environ
 - **Installation**: Local script usage
 - **Prerequisites**: iTerm2, zsh, Git, curl
 
-Both implementations provide identical functionality with platform-specific optimizations for the best native experience.
+### Windows PowerShell
+- **Environment**: Windows 11 with PowerShell 7.5.3 or later
+- **Command**: `pwsh -File icmwriper-5-for-pwsh.ps1` (PowerShell script)
+- **Installation**: Local script usage
+- **Prerequisites**: PowerShell 7.5.3+, Git
+
+All three implementations provide identical functionality with platform-specific optimizations for the best native experience.
 
 ## How It Works
 
@@ -141,9 +147,31 @@ Choose your platform and follow the corresponding installation instructions:
 
    This will create a new directory `my-test-project` with the ICMwRIPER-5 template files.
 
+### 3. Windows PowerShell Installation
+
+#### Prerequisites
+- Windows 11
+- PowerShell 7.5.3 or later (install from [PowerShell GitHub releases](https://github.com/PowerShell/PowerShell/releases))
+- Git installed (via Git for Windows or other installer)
+
+#### Installation Steps
+
+1. **Clone the repository**:
+   ```powershell
+   git clone https://github.com/wubin28/ICMwRIPER-5.git
+   cd ICMwRIPER-5
+   ```
+
+2. **Test the command**:
+   ```powershell
+   pwsh -File icmwriper-5-for-pwsh.ps1 generate my-test-project
+   ```
+
+   This will create a new directory `my-test-project` with the ICMwRIPER-5 template files.
+
 #### What the Commands Do
 
-Both `icmwriper-5-for-ubuntu` and `icmwriper-5-for-macos` provide identical functionality:
+All three commands (`icmwriper-5-for-ubuntu`, `icmwriper-5-for-macos`, and `icmwriper-5-for-pwsh.ps1`) provide identical functionality:
 - Creates a new project directory with the specified name
 - Downloads the following template files from this repository:
   - `icm-bubble-template.md` - Starting prompt template
@@ -151,19 +179,21 @@ Both `icmwriper-5-for-ubuntu` and `icmwriper-5-for-macos` provide identical func
   - `icmwriper-5.md` - RIPER-5 protocol rules
   - `icmwriper-5-README.md` - This README file (renamed from README.md)
 
-### 3. Command Usage
+### 4. Command Usage
 
-Both platform commands provide 4 subcommands for managing your ICMwRIPER-5 projects:
+All three platform commands provide 6 subcommands for managing your ICMwRIPER-5 projects:
 
 **Command syntax**:
 - **Ubuntu**: `icmwriper-5-for-ubuntu <subcommand> <argument>`
 - **macOS**: `./icmwriper-5-for-macos <subcommand> <argument>`
+- **Windows**: `pwsh -File icmwriper-5-for-pwsh.ps1 <subcommand> <argument>`
 
 #### generate - Create New Project
 
 **Syntax**:
 - **Ubuntu**: `icmwriper-5-for-ubuntu generate <project-name>`
 - **macOS**: `./icmwriper-5-for-macos generate <project-name>`
+- **Windows**: `pwsh -File icmwriper-5-for-pwsh.ps1 generate <project-name>`
 
 **Purpose**: Bootstrap a new ICMwRIPER-5 project with template files
 
@@ -179,6 +209,11 @@ icmwriper-5-for-ubuntu generate my-kata-project
 ./icmwriper-5-for-macos generate my-kata-project
 ```
 
+**Windows PowerShell**:
+```powershell
+pwsh -File icmwriper-5-for-pwsh.ps1 generate my-kata-project
+```
+
 **What it does**:
 - Creates project directory
 - Downloads 4 template files from GitHub:
@@ -192,6 +227,7 @@ icmwriper-5-for-ubuntu generate my-kata-project
 **Syntax**:
 - **Ubuntu**: `icmwriper-5-for-ubuntu story <source-story-file>`
 - **macOS**: `./icmwriper-5-for-macos story <source-story-file>`
+- **Windows**: `pwsh -File icmwriper-5-for-pwsh.ps1 story <source-story-file>`
 
 **Purpose**: Create a timestamped copy of a story file for the current iteration
 
@@ -209,6 +245,12 @@ icmwriper-5-for-ubuntu story icm-story-template.md
 # Output: icm-story-2025-10-05--23-32.md
 ```
 
+**Windows PowerShell**:
+```powershell
+pwsh -File icmwriper-5-for-pwsh.ps1 story icm-story-template.md
+# Output: icm-story-2025-10-16--11-45.md
+```
+
 **What it does**:
 - Copies the source story file
 - Renames it with current timestamp in format `icm-story-yyyy-mm-dd--hh-mm.md`
@@ -218,6 +260,7 @@ icmwriper-5-for-ubuntu story icm-story-template.md
 **Syntax**:
 - **Ubuntu**: `icmwriper-5-for-ubuntu bubble <source-bubble-file>`
 - **macOS**: `./icmwriper-5-for-macos bubble <source-bubble-file>`
+- **Windows**: `pwsh -File icmwriper-5-for-pwsh.ps1 bubble <source-bubble-file>`
 
 **Purpose**: Create a timestamped bubble file that matches the latest story file
 
@@ -235,6 +278,12 @@ icmwriper-5-for-ubuntu bubble icm-bubble-template.md
 # Output: icm-bubble-2025-10-05--23-32.md
 ```
 
+**Windows PowerShell**:
+```powershell
+pwsh -File icmwriper-5-for-pwsh.ps1 bubble icm-bubble-template.md
+# Output: icm-bubble-2025-10-16--11-46.md
+```
+
 **What it does**:
 - Finds the latest `icm-story-*.md` file
 - Copies the source bubble file with the same timestamp as the latest story
@@ -247,6 +296,7 @@ icmwriper-5-for-ubuntu bubble icm-bubble-template.md
 **Syntax**:
 - **Ubuntu**: `icmwriper-5-for-ubuntu snb <source-story-file>`
 - **macOS**: `./icmwriper-5-for-macos snb <source-story-file>`
+- **Windows**: `pwsh -File icmwriper-5-for-pwsh.ps1 snb <source-story-file>`
 
 **Purpose**: Create both story and bubble files simultaneously with identical timestamps
 
@@ -264,6 +314,12 @@ icmwriper-5-for-ubuntu snb icm-story-template.md
 # Output: icm-story-2025-10-05--23-33.md and icm-bubble-2025-10-05--23-33.md
 ```
 
+**Windows PowerShell**:
+```powershell
+pwsh -File icmwriper-5-for-pwsh.ps1 snb icm-story-template.md
+# Output: icm-story-2025-10-16--11-46.md and icm-bubble-2025-10-16--11-46.md
+```
+
 **What it does**:
 - Copies the source story file with current timestamp
 - Copies `icm-bubble-template.md` with the same timestamp
@@ -271,7 +327,65 @@ icmwriper-5-for-ubuntu snb icm-story-template.md
 
 **Benefit**: Ensures perfect pairing of story and bubble files with one command.
 
-### 4. Context Management and AI Tool Switching
+#### bubble-log - Create Timestamped Log File
+
+**Syntax**:
+- **Ubuntu**: `icmwriper-5-for-ubuntu bubble-log`
+- **Windows**: `pwsh -File icmwriper-5-for-pwsh.ps1 bubble-log`
+
+**Purpose**: Create an empty timestamped markdown file for logging or notes
+
+**Examples**:
+
+**Ubuntu**:
+```bash
+icmwriper-5-for-ubuntu bubble-log
+# Output: bubble-2025-10-16--12-15.md
+```
+
+**Windows PowerShell**:
+```powershell
+pwsh -File icmwriper-5-for-pwsh.ps1 bubble-log
+# Output: bubble-2025-10-16--12-15.md
+```
+
+**What it does**:
+- Creates an empty (0-byte) markdown file with current timestamp
+- Uses current system timestamp (independent of story files)
+- Useful for quick session notes or logging
+
+**Note**: Currently available on Ubuntu and Windows PowerShell only (not yet implemented for macOS).
+
+#### generate-html-data-dashboard - Create Data Dashboard Project
+
+**Syntax**:
+- **Ubuntu**: `icmwriper-5-for-ubuntu generate-html-data-dashboard <project-name>`
+- **Windows**: `pwsh -File icmwriper-5-for-pwsh.ps1 generate-html-data-dashboard <project-name>`
+
+**Purpose**: Bootstrap a new ICMwRIPER-5 project with additional data dashboard resources
+
+**Examples**:
+
+**Ubuntu**:
+```bash
+icmwriper-5-for-ubuntu generate-html-data-dashboard my-dashboard-project
+```
+
+**Windows PowerShell**:
+```powershell
+pwsh -File icmwriper-5-for-pwsh.ps1 generate-html-data-dashboard my-dashboard-project
+```
+
+**What it does**:
+- Creates project directory with 6 files (vs 4 files in regular generate)
+- Downloads standard template files plus:
+  - `first-80-rows-agentic_ai_performance_dataset_20250622.xlsx` - Sample dataset
+  - `.gitignore` - Git ignore configuration
+- Specialized for Python/HTML/CSS/JavaScript data visualization projects
+
+**Note**: Currently available on Ubuntu and Windows PowerShell only (not yet implemented for macOS).
+
+### 5. Context Management and AI Tool Switching
 
 #### Generating Context Files
 
@@ -310,7 +424,7 @@ technical architecture, and key design decisions.
 - Reference it when continuing work after clearing context
 - Include it in project documentation for onboarding
 
-### 5. Create Your First Iteration
+### 6. Create Your First Iteration
 
 When starting a new iteration:
 
@@ -326,6 +440,11 @@ When starting a new iteration:
    ./icmwriper-5-for-macos snb icm-story-template.md
    ```
 
+   **Windows PowerShell**:
+   ```powershell
+   pwsh -File icmwriper-5-for-pwsh.ps1 snb icm-story-template.md
+   ```
+
    Or create them separately using `story` and `bubble` commands.
 
 2. Edit the generated story file (`icm-story-yyyy-mm-dd--hh-mm.md`) according to your specific iteration requirements
@@ -334,7 +453,7 @@ When starting a new iteration:
 
 4. Send the prompts from `icm-bubble-yyyy-mm-dd--hh-mm.md` to your AI assistant to begin the RIPER-5 workflow
 
-### 6. Follow the Workflow
+### 7. Follow the Workflow
 
 Progress through each RIPER-5 phase systematically. Ensure your AI assistant declares the current mode at the start of each response. When the AI ​​stops in each mode and waits for your signals, carefully check the AI's output and, if necessary, ask the AI ​​to make adjustments until you are satisfied before issuing the signal to enter the next mode.
 
@@ -345,11 +464,13 @@ Progress through each RIPER-5 phase systematically. Ensure your AI assistant dec
 ├── icm-story-template.md               # Story description template
 ├── icmwriper-5-for-ubuntu              # Command-line tool for Ubuntu (WSL2)
 ├── icmwriper-5-for-macos               # Command-line tool for macOS
+├── icmwriper-5-for-pwsh.ps1            # Command-line tool for Windows PowerShell
 ├── icmwriper-5.md                      # Updated RIPER-5 protocol rules
 ├── README.md                           # This file
 ├── icm-bubble-yyyy-mm-dd--hh-mm.md     # Iteration prompts (created per iteration)
 ├── icm-story-yyyy-mm-dd--hh-mm.md      # Iteration stories (created per iteration)
 ├── icm-context-yyyy-mm-dd--hh-mm.md    # Context snapshots (for AI tool switching)
+├── bubble-yyyy-mm-dd--hh-mm.md         # Log files (created by bubble-log command)
 └── todo-yyyy-mm-dd--hh-mm.md           # Task tracking (created during PLAN phase)
 ```
 
@@ -380,10 +501,11 @@ ICMwRIPER-5 is particularly effective for:
 4. **Update Context Regularly**: Return to Context Management phase when requirements change
 5. **Enforce Mode Declarations**: Ensure your AI assistant explicitly declares its mode
 6. **Maintain Timestamps**: Use consistent naming for all iteration files
-7. **Platform Consistency**: When working on cross-platform projects, test changes on both Ubuntu and macOS versions
+7. **Platform Consistency**: When working on cross-platform projects, test changes across all supported platforms
 8. **Command Usage**: Use the appropriate command for your platform:
    - Ubuntu: Use `icmwriper-5-for-ubuntu` after global installation
    - macOS: Use `./icmwriper-5-for-macos` as a local script
+   - Windows: Use `pwsh -File icmwriper-5-for-pwsh.ps1` for PowerShell execution
 
 ## Contributing
 
