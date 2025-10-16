@@ -21,14 +21,14 @@ if [ $# -eq 1 ]; then
         exit 0
     else
         echo "Error: Unknown single-argument command '$1'."
-        echo "Usage: icmwriper-5-for-ubuntu {bubble-log | snb <story-name> | generate-html-data-dashboard <project-name>}"
+        echo "Usage: icmwriper-5-for-ubuntu {bubble-log | snb <story-name> | generate-html-data-dashboard <project-name> | generate-nextjs-web-app <project-name>}"
         exit 1
     fi
 fi
 
 # Argument count validation
 if [ $# -ne 2 ]; then
-    echo "Usage: icmwriper-5-for-ubuntu {bubble-log | snb <story-name> | generate-html-data-dashboard <project-name>}"
+    echo "Usage: icmwriper-5-for-ubuntu {bubble-log | snb <story-name> | generate-html-data-dashboard <project-name> | generate-nextjs-web-app <project-name>}"
     exit 1
 fi
 
@@ -135,7 +135,63 @@ elif [ "$1" = "generate-html-data-dashboard" ]; then
     # Success message
     echo "Success: Project '$PROJECT_NAME' created with ICMwRIPER-5 template files and HTML data dashboard resources."
     exit 0
+
+elif [ "$1" = "generate-nextjs-web-app" ]; then
+    # Generate Next.js Web App subcommand handler
+    # Store project name
+    PROJECT_NAME="$2"
+
+    # Directory existence check
+    if [ -d "$PROJECT_NAME" ]; then
+        echo "Error: Directory '$PROJECT_NAME' already exists."
+        exit 1
+    fi
+
+    # GitHub repository configuration
+    GITHUB_RAW_URL="https://raw.githubusercontent.com/wubin28/ICMwRIPER-5/main"
+
+    # Define files to download with their paths
+    # Root files (2 files)
+    ROOT_FILES=("icmwriper-5.md" "README.md")
+
+    # Subdirectory files (3 files)
+    SUBDIR_FILES=("for-nextjs-web-app/icm-bubble-template-for-nextjs-web-app.md" "for-nextjs-web-app/icm-story-template-for-nextjs-web-app.md" "for-nextjs-web-app/.gitignore")
+
+    # Create project directory
+    if ! mkdir "$PROJECT_NAME"; then
+        echo "Error: Failed to create directory '$PROJECT_NAME'."
+        exit 1
+    fi
+
+    # Download root files
+    for filename in "${ROOT_FILES[@]}"; do
+        url="$GITHUB_RAW_URL/$filename"
+        if ! curl -f -sS -o "$PROJECT_NAME/$filename" "$url"; then
+            echo "Error: Failed to download $filename from GitHub. Please check your internet connection and repository availability."
+            rm -rf "$PROJECT_NAME"
+            exit 1
+        fi
+    done
+
+    # Download subdirectory files
+    for filepath in "${SUBDIR_FILES[@]}"; do
+        # Extract just the filename for the target
+        filename=$(basename "$filepath")
+        url="$GITHUB_RAW_URL/$filepath"
+        if ! curl -f -sS -o "$PROJECT_NAME/$filename" "$url"; then
+            echo "Error: Failed to download $filepath from GitHub. Please check your internet connection and repository availability."
+            rm -rf "$PROJECT_NAME"
+            exit 1
+        fi
+    done
+
+    # Rename README.md
+    mv "$PROJECT_NAME/README.md" "$PROJECT_NAME/icmwriper-5-README.md"
+
+    # Success message
+    echo "Success: Project '$PROJECT_NAME' created with ICMwRIPER-5 template files and Next.js web app resources."
+    exit 0
 else
-    echo "Error: Unknown command '$1'. Supported commands: 'bubble-log', 'snb', 'generate-html-data-dashboard'."
+    echo "Error: Unknown command '$1'. Supported commands: 'bubble-log', 'snb', 'generate-html-data-dashboard', 'generate-nextjs-web-app'."
     exit 1
 fi
