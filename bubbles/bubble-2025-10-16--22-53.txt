@@ -1,0 +1,876 @@
+
+ ▐▛███▜▌   Claude Code v2.0.19
+▝▜█████▛▘  Sonnet 4.5 · Claude Pro
+  ▘▘ ▝▝    /home/wzb/OOR/katas/ICMwRIPER-5
+
+> /clear 
+  ⎿  (no content)
+
+> 请你阅读 @icm-context-2025-10-16--22-23.md 
+，然后依次将当前项目针对ubuntu, macOS和powershell这3个开发
+环境的以下3个子命令的相关代码删除，因为这3个子命令已经不再
+需要了，另外删除后，你要保证其余3个子命令仍然能正常工作。
+下面是你要删除的3个子命令：【generate, story, bubble】 
+  ⎿  Read icm-context-2025-10-16--22-23.md (689 lines)
+
+● [MODE: RESEARCH]
+
+  I've read the context file. I understand you want to
+  remove 3 subcommands (generate, story, bubble) from all
+  3 platform scripts while keeping the remaining 3
+  subcommands (bubble-log, snb,
+  generate-html-data-dashboard) working.
+
+  Let me first examine the current scripts to understand
+  their structure:
+
+● Read(icmwriper-5-for-ubuntu)
+  ⎿  Read 249 lines
+
+● Read(icmwriper-5-for-macos)
+  ⎿  Read 249 lines
+
+● Read(icmwriper-5-for-pwsh.ps1)
+  ⎿  Read 351 lines
+
+● I've examined all three scripts. I can see the structure
+   clearly:
+
+  Subcommands to remove: generate, story, bubble
+  Subcommands to keep: bubble-log, snb,
+  generate-html-data-dashboard
+
+  Analysis:
+  - Ubuntu script: Lines 36-99 (generate + story) and
+  lines 101-141 (bubble) need removal
+  - macOS script: Lines 36-99 (generate + story) and lines
+   101-141 (bubble) need removal
+  - PowerShell script: Lines 107-151 (generate), lines
+  153-180 (story), lines 182-223 (bubble) need removal
+  - All usage messages need updating to remove the 3
+  deleted subcommands
+  - The error messages in the else/default clauses need
+  updating
+
+  Let me now present a plan for approval.
+
+  ---
+  [MODE: PLAN]
+
+  Implementation Plan
+
+  I will remove the 3 subcommands (generate, story,
+  bubble) from all 3 platform scripts while preserving the
+   3 remaining subcommands (bubble-log, snb,
+  generate-html-data-dashboard).
+
+  Changes Required:
+
+  For all 3 scripts (icmwriper-5-for-ubuntu, 
+  icmwriper-5-for-macos, icmwriper-5-for-pwsh.ps1):
+
+  1. Remove code blocks:
+    - Delete the generate subcommand handler (lines 36-72
+  in bash scripts, lines 107-151 in PowerShell)
+    - Delete the story subcommand handler (lines 74-99 in
+  bash scripts, lines 153-180 in PowerShell)
+    - Delete the bubble subcommand handler (lines 101-141
+  in bash scripts, lines 182-223 in PowerShell)
+  2. Update usage messages:
+    - Change from: {bubble-log | generate <project-name> |
+   generate-html-data-dashboard <project-name> | story
+  <story-name> | bubble <bubble-name> | snb <story-name>}
+    - Change to: {bubble-log | snb <story-name> | 
+  generate-html-data-dashboard <project-name>}
+  3. Update error messages:
+    - Change from: Supported commands: 'bubble-log', 
+  'generate', 'generate-html-data-dashboard', 'story',
+  'bubble', 'snb'.
+    - Change to: Supported commands: 'bubble-log', 'snb', 
+  'generate-html-data-dashboard'.
+  4. Verify remaining structure:
+    - Ensure the snb subcommand remains fully functional
+  (it's self-contained and doesn't depend on removed
+  subcommands)
+    - Ensure the generate-html-data-dashboard subcommand
+  remains fully functional
+    - Ensure the bubble-log subcommand remains fully
+  functional
+
+  Expected Result: 3 scripts with only 3 subcommands each,
+   all fully functional.
+
+  Ready to proceed with EXECUTE mode?
+
+> ENTER EXECUTE MODE 
+
+● [MODE: EXECUTE]
+
+  I will now remove the 3 subcommands from all 3 platform
+  scripts.
+
+● Update(icmwriper-5-for-ubuntu)
+  ⎿  Updated icmwriper-5-for-ubuntu with 3 additions and 
+     110 removals
+        21            exit 0
+        22        else
+        23            echo "Error: Unknown 
+             single-argument command '$1'."
+        24 -          echo "Usage: 
+           -  icmwriper-5-for-ubuntu {bubble-log | 
+           -  generate <project
+           -  -name> | generate-html-data-dashboard 
+           -  <project-name>
+           -   | story <story-name> | bubble 
+           -  <bubble-name> | snb <story-name>}"
+        24 +          echo "Usage: 
+           +  icmwriper-5-for-ubuntu {bubble-log | snb
+           +   <story
+           +  -name> | generate-html-data-dashboard 
+           +  <project-name>}"
+        25            exit 1
+        26        fi
+        27    fi
+        28    
+        29    # Argument count validation
+        30    if [ $# -ne 2 ]; then
+        31 -      echo "Usage: icmwriper-5-for-ubuntu 
+           -  {bubble-log | generate <project
+           -  -name> | generate-html-data-dashboard 
+           -  <project-name>
+           -   | story <story-name> | bubble 
+           -  <bubble-name> | snb <story-name>}"
+        31 +      echo "Usage: icmwriper-5-for-ubuntu 
+           +  {bubble-log | snb <story
+           +  -name> | generate-html-data-dashboard 
+           +  <project-name>}"
+        32        exit 1
+        33    fi
+        34    
+        35    # Subcommand routing
+        36 -  if [ "$1" = "generate" ]; then
+        37 -      # Generate subcommand handler
+        38 -      # Store project name
+        39 -      PROJECT_NAME="$2"
+        40 -  
+        41 -      # Directory existence check
+        42 -      if [ -d "$PROJECT_NAME" ]; then
+        43 -          echo "Error: Directory 
+           - '$PROJECT_NAME' already exists."
+        44 -          exit 1
+        45 -      fi
+        46 -  
+        47 -      # GitHub repository configuration
+        48 -      GITHUB_RAW_URL="https://raw.githubuse
+           - rcontent.com/wubin28/ICMwRIPER-5/main"
+        49 -      FILES=("icm-bubble-template.md" 
+           - "icm-story-template.md" "icmwriper-5.md" 
+           - "README.md")
+        50 -  
+        51 -      # Create project directory
+        52 -      if ! mkdir "$PROJECT_NAME"; then
+        53 -          echo "Error: Failed to create 
+           - directory '$PROJECT_NAME'."
+        54 -          exit 1
+        55 -      fi
+        56 -  
+        57 -      # Download files
+        58 -      for filename in "${FILES[@]}"; do
+        59 -          url="$GITHUB_RAW_URL/$filename"
+        60 -          if ! curl -f -sS -o 
+           - "$PROJECT_NAME/$filename" "$url"; then
+        61 -              echo "Error: Failed to 
+           - download $filename from GitHub. Please 
+           - check your internet connection and 
+           - repository availability."
+        62 -              rm -rf "$PROJECT_NAME"
+        63 -              exit 1
+        64 -          fi
+        65 -      done
+        66 -  
+        67 -      # Rename README.md
+        68 -      mv "$PROJECT_NAME/README.md" 
+           - "$PROJECT_NAME/icmwriper-5-README.md"
+        69 -  
+        70 -      # Success message
+        71 -      echo "Success: Project 
+           - '$PROJECT_NAME' created with ICMwRIPER-5 
+           - template files."
+        72 -      exit 0
+        73 -  
+        74 -  elif [ "$1" = "story" ]; then
+        75 -      # Story subcommand handler
+        76 -      # Store story name
+        77 -      STORY_NAME="$2"
+        78 -  
+        79 -      # Check if source file exists
+        80 -      if [ ! -f "$STORY_NAME" ]; then
+        81 -          echo "Error: File '$STORY_NAME' 
+           - does not exist."
+        82 -          exit 1
+        83 -      fi
+        84 -  
+        85 -      # Generate timestamp
+        86 -      TIMESTAMP=$(date +"%Y-%m-%d--%H-%M")
+        87 -  
+        88 -      # Define target filename
+        89 -      TARGET_FILE="icm-story-$TIMESTAMP.md"
+        90 -  
+        91 -      # Copy file
+        92 -      if ! cp "$STORY_NAME" "$TARGET_FILE";
+           -  then
+        93 -          echo "Error: Failed to copy 
+           - '$STORY_NAME' to '$TARGET_FILE'."
+        94 -          exit 1
+        95 -      fi
+        96 -  
+        97 -      # Success message
+        98 -      echo "Success: Copied '$STORY_NAME' 
+           - to '$TARGET_FILE'."
+        99 -      exit 0
+       100 -  
+       101 -  elif [ "$1" = "bubble" ]; then
+       102 -      # Bubble subcommand handler
+       103 -      # Store bubble name
+       104 -      BUBBLE_NAME="$2"
+       105 -  
+       106 -      # Check if source file exists
+       107 -      if [ ! -f "$BUBBLE_NAME" ]; then
+       108 -          echo "Error: File '$BUBBLE_NAME' 
+           - does not exist."
+       109 -          exit 1
+       110 -      fi
+       111 -  
+       112 -      # Find the latest icm-story-*.md file
+       113 -      LATEST_STORY=$(ls -t icm-story-*.md 
+           - 2>/dev/null | head -1)
+       114 -  
+       115 -      # Check if any story file exists
+       116 -      if [ -z "$LATEST_STORY" ]; then
+       117 -          echo "Error: No icm-story-*.md 
+           - files found in current directory."
+       118 -          exit 1
+       119 -      fi
+       120 -  
+       121 -      # Extract timestamp from the latest 
+           - story filename
+       122 -      # Remove "icm-story-" prefix and 
+           - ".md" suffix
+       123 -      
+           - TIMESTAMP="${LATEST_STORY#icm-story-}"
+       124 -      TIMESTAMP="${TIMESTAMP%.md}"
+       125 -  
+       126 -      # Define target filename
+       127 -      
+           - TARGET_FILE="icm-bubble-$TIMESTAMP.md"
+       128 -  
+       129 -      # Copy file
+       130 -      if ! cp "$BUBBLE_NAME" 
+           - "$TARGET_FILE"; then
+       131 -          echo "Error: Failed to copy 
+           - '$BUBBLE_NAME' to '$TARGET_FILE'."
+       132 -          exit 1
+       133 -      fi
+       134 -  
+       135 -      # Replace the story reference with 
+           - the latest story filename
+       136 -      # Match both numeric timestamps and 
+           - the template placeholder format
+       137 -      sed -i "s/@icm-story-\([0-9]\{4\}-[0-
+           - 9]\{2\}-[0-9]\{2\}--[0-9]\{2\}-[0-9]\{2\}\
+           - |yyyy-mm-dd--hh-mm\)\.md/@$LATEST_STORY/g"
+           -  "$TARGET_FILE"
+       138 -  
+       139 -      # Success message
+       140 -      echo "Success: Copied '$BUBBLE_NAME' 
+           - to '$TARGET_FILE' and updated story 
+           - reference to '$LATEST_STORY'."
+       141 -      exit 0
+       142 -  
+       143 -  elif [ "$1" = "snb" ]; then
+        36 +  if [ "$1" = "snb" ]; then
+        37        # SNB (Story aNd Bubble) subcommand 
+             handler
+        38        # Store story name
+        39        STORY_NAME="$2"
+
+● Update(icmwriper-5-for-ubuntu)
+  ⎿  Updated icmwriper-5-for-ubuntu with 1 addition and 1
+     removal
+       136        echo "Success: Project 
+             '$PROJECT_NAME' created with ICMwRIPER-5 
+             template files and HTML data dashboard 
+             resources."
+       137        exit 0
+       138    else
+       139 -      echo "Error: Unknown command '$1'. 
+           -  Supported commands: 'bubble-log', '
+           -  generate', 'generate-html-data-dashboard'
+           -  , 'story', 'bubble', 'snb'."
+       139 +      echo "Error: Unknown command '$1'. 
+           +  Supported commands: 'bubble-log', 'snb
+           +  ', 'generate-html-data-dashboard'."
+       140        exit 1
+       141    fi
+
+● Update(icmwriper-5-for-macos)
+  ⎿  Updated icmwriper-5-for-macos with 3 additions and  
+     110 removals
+        21            exit 0
+        22        else
+        23            echo "Error: Unknown 
+             single-argument command '$1'."
+        24 -          echo "Usage: 
+           -  icmwriper-5-for-macos {bubble-log | 
+           -  generate <project
+           -  -name> | generate-html-data-dashboard 
+           -  <project-name>
+           -   | story <story-name> | bubble 
+           -  <bubble-name> | snb <story-name>}"
+        24 +          echo "Usage: 
+           +  icmwriper-5-for-macos {bubble-log | snb <
+           +  story
+           +  -name> | generate-html-data-dashboard 
+           +  <project-name>}"
+        25            exit 1
+        26        fi
+        27    fi
+        28    
+        29    # Argument count validation
+        30    if [ $# -ne 2 ]; then
+        31 -      echo "Usage: icmwriper-5-for-macos 
+           -  {bubble-log | generate <project
+           -  -name> | generate-html-data-dashboard 
+           -  <project-name>
+           -   | story <story-name> | bubble 
+           -  <bubble-name> | snb <story-name>}"
+        31 +      echo "Usage: icmwriper-5-for-macos 
+           +  {bubble-log | snb <story
+           +  -name> | generate-html-data-dashboard 
+           +  <project-name>}"
+        32        exit 1
+        33    fi
+        34    
+        35    # Subcommand routing
+        36 -  if [ "$1" = "generate" ]; then
+        37 -      # Generate subcommand handler
+        38 -      # Store project name
+        39 -      PROJECT_NAME="$2"
+        40 -  
+        41 -      # Directory existence check
+        42 -      if [ -d "$PROJECT_NAME" ]; then
+        43 -          echo "Error: Directory 
+           - '$PROJECT_NAME' already exists."
+        44 -          exit 1
+        45 -      fi
+        46 -  
+        47 -      # GitHub repository configuration
+        48 -      GITHUB_RAW_URL="https://raw.githubuse
+           - rcontent.com/wubin28/ICMwRIPER-5/main"
+        49 -      FILES=("icm-bubble-template.md" 
+           - "icm-story-template.md" "icmwriper-5.md" 
+           - "README.md")
+        50 -  
+        51 -      # Create project directory
+        52 -      if ! mkdir "$PROJECT_NAME"; then
+        53 -          echo "Error: Failed to create 
+           - directory '$PROJECT_NAME'."
+        54 -          exit 1
+        55 -      fi
+        56 -  
+        57 -      # Download files
+        58 -      for filename in "${FILES[@]}"; do
+        59 -          url="$GITHUB_RAW_URL/$filename"
+        60 -          if ! curl -f -sS -o 
+           - "$PROJECT_NAME/$filename" "$url"; then
+        61 -              echo "Error: Failed to 
+           - download $filename from GitHub. Please 
+           - check your internet connection and 
+           - repository availability."
+        62 -              rm -rf "$PROJECT_NAME"
+        63 -              exit 1
+        64 -          fi
+        65 -      done
+        66 -  
+        67 -      # Rename README.md
+        68 -      mv "$PROJECT_NAME/README.md" 
+           - "$PROJECT_NAME/icmwriper-5-README.md"
+        69 -  
+        70 -      # Success message
+        71 -      echo "Success: Project 
+           - '$PROJECT_NAME' created with ICMwRIPER-5 
+           - template files."
+        72 -      exit 0
+        73 -  
+        74 -  elif [ "$1" = "story" ]; then
+        75 -      # Story subcommand handler
+        76 -      # Store story name
+        77 -      STORY_NAME="$2"
+        78 -  
+        79 -      # Check if source file exists
+        80 -      if [ ! -f "$STORY_NAME" ]; then
+        81 -          echo "Error: File '$STORY_NAME' 
+           - does not exist."
+        82 -          exit 1
+        83 -      fi
+        84 -  
+        85 -      # Generate timestamp
+        86 -      TIMESTAMP=$(date +"%Y-%m-%d--%H-%M")
+        87 -  
+        88 -      # Define target filename
+        89 -      TARGET_FILE="icm-story-$TIMESTAMP.md"
+        90 -  
+        91 -      # Copy file
+        92 -      if ! cp "$STORY_NAME" "$TARGET_FILE";
+           -  then
+        93 -          echo "Error: Failed to copy 
+           - '$STORY_NAME' to '$TARGET_FILE'."
+        94 -          exit 1
+        95 -      fi
+        96 -  
+        97 -      # Success message
+        98 -      echo "Success: Copied '$STORY_NAME' 
+           - to '$TARGET_FILE'."
+        99 -      exit 0
+       100 -  
+       101 -  elif [ "$1" = "bubble" ]; then
+       102 -      # Bubble subcommand handler
+       103 -      # Store bubble name
+       104 -      BUBBLE_NAME="$2"
+       105 -  
+       106 -      # Check if source file exists
+       107 -      if [ ! -f "$BUBBLE_NAME" ]; then
+       108 -          echo "Error: File '$BUBBLE_NAME' 
+           - does not exist."
+       109 -          exit 1
+       110 -      fi
+       111 -  
+       112 -      # Find the latest icm-story-*.md file
+       113 -      LATEST_STORY=$(ls -t icm-story-*.md 
+           - 2>/dev/null | head -1)
+       114 -  
+       115 -      # Check if any story file exists
+       116 -      if [ -z "$LATEST_STORY" ]; then
+       117 -          echo "Error: No icm-story-*.md 
+           - files found in current directory."
+       118 -          exit 1
+       119 -      fi
+       120 -  
+       121 -      # Extract timestamp from the latest 
+           - story filename
+       122 -      # Remove "icm-story-" prefix and 
+           - ".md" suffix
+       123 -      
+           - TIMESTAMP="${LATEST_STORY#icm-story-}"
+       124 -      TIMESTAMP="${TIMESTAMP%.md}"
+       125 -  
+       126 -      # Define target filename
+       127 -      
+           - TARGET_FILE="icm-bubble-$TIMESTAMP.md"
+       128 -  
+       129 -      # Copy file
+       130 -      if ! cp "$BUBBLE_NAME" 
+           - "$TARGET_FILE"; then
+       131 -          echo "Error: Failed to copy 
+           - '$BUBBLE_NAME' to '$TARGET_FILE'."
+       132 -          exit 1
+       133 -      fi
+       134 -  
+       135 -      # Replace the story reference with 
+           - the latest story filename
+       136 -      # Match both numeric timestamps and 
+           - the template placeholder format
+       137 -      sed -i '' -E "s/@icm-story-([0-9]{4}-
+           - [0-9]{2}-[0-9]{2}--[0-9]{2}-[0-9]{2}|yyyy-
+           - mm-dd--hh-mm)\.md/@$LATEST_STORY/g" 
+           - "$TARGET_FILE"
+       138 -  
+       139 -      # Success message
+       140 -      echo "Success: Copied '$BUBBLE_NAME' 
+           - to '$TARGET_FILE' and updated story 
+           - reference to '$LATEST_STORY'."
+       141 -      exit 0
+       142 -  
+       143 -  elif [ "$1" = "snb" ]; then
+        36 +  if [ "$1" = "snb" ]; then
+        37        # SNB (Story aNd Bubble) subcommand 
+             handler
+        38        # Store story name
+        39        STORY_NAME="$2"
+
+● Update(icmwriper-5-for-macos)
+  ⎿  Updated icmwriper-5-for-macos with 1 addition and 1 
+     removal
+       136        echo "Success: Project 
+             '$PROJECT_NAME' created with ICMwRIPER-5 
+             template files and HTML data dashboard 
+             resources."
+       137        exit 0
+       138    else
+       139 -      echo "Error: Unknown command '$1'. 
+           -  Supported commands: 'bubble-log', '
+           -  generate', 'generate-html-data-dashboard'
+           -  , 'story', 'bubble', 'snb'."
+       139 +      echo "Error: Unknown command '$1'. 
+           +  Supported commands: 'bubble-log', 'snb
+           +  ', 'generate-html-data-dashboard'."
+       140        exit 1
+       141    fi
+
+● Update(icmwriper-5-for-pwsh.ps1)
+  ⎿  Updated icmwriper-5-for-pwsh.ps1 with 1 addition and
+     1 removal
+       13    
+       14    # Function to show usage information
+       15    function Show-Usage {
+       16 -      Write-Host "Usage: 
+          -  icmwriper-5-for-pwsh {bubble-log | 
+          -  generate <project
+          -  -name> | generate-html-data-dashboard 
+          -  <project-name>
+          -   | story <story-name> | bubble 
+          -  <bubble-name> | snb <story-name>}"
+       16 +      Write-Host "Usage: 
+          +  icmwriper-5-for-pwsh {bubble-log | snb <
+          +  story
+          +  -name> | generate-html-data-dashboard 
+          +  <project-name>}"
+       17    }
+       18    
+       19    # Function to generate timestamp in 
+            ICMwRIPER-5 format
+
+● Update(icmwriper-5-for-pwsh.ps1)
+  ⎿  Updated icmwriper-5-for-pwsh.ps1 with 118 removals
+       104    
+       105    # Subcommand routing
+       106    switch ($SubCommand) {
+       107 -      "generate" {
+       108 -          # Generate subcommand handler
+       109 -          # Store project name
+       110 -          $projectName = $Argument
+       111 -  
+       112 -          # Directory existence check
+       113 -          if (Test-Path -Path $projectName 
+           - -PathType Container) {
+       114 -              Write-Host "Error: Directory 
+           - '$projectName' already exists."
+       115 -              exit 1
+       116 -          }
+       117 -  
+       118 -          # GitHub repository configuration
+       119 -          $githubRawUrl = 
+           - "https://raw.githubusercontent.com/wubin28
+           - /ICMwRIPER-5/main"
+       120 -          $files = 
+           - @("icm-bubble-template.md", 
+           - "icm-story-template.md", "icmwriper-5.md",
+           -  "README.md")
+       121 -  
+       122 -          # Create project directory
+       123 -          try {
+       124 -              New-Item -Path $projectName 
+           - -ItemType Directory -Force | Out-Null
+       125 -          }
+       126 -          catch {
+       127 -              Write-Host "Error: Failed to 
+           - create directory '$projectName'."
+       128 -              exit 1
+       129 -          }
+       130 -  
+       131 -          # Download files
+       132 -          foreach ($filename in $files) {
+       133 -              $url = 
+           - "$githubRawUrl/$filename"
+       134 -              $outputPath = Join-Path 
+           - $projectName $filename
+       135 -  
+       136 -              if (-not (Download-File -Url 
+           - $url -OutputPath $outputPath)) {
+       137 -                  Write-Host "Error: Failed
+           -  to download $filename from GitHub. Please
+           -  check your internet connection and 
+           - repository availability."
+       138 -                  Remove-Item -Path 
+           - $projectName -Recurse -Force -ErrorAction 
+           - SilentlyContinue
+       139 -                  exit 1
+       140 -              }
+       141 -          }
+       142 -  
+       143 -          # Rename README.md
+       144 -          $readmePath = Join-Path 
+           - $projectName "README.md"
+       145 -          $newReadmePath = Join-Path 
+           - $projectName "icmwriper-5-README.md"
+       146 -          Move-Item -Path $readmePath 
+           - -Destination $newReadmePath
+       147 -  
+       148 -          # Success message
+       149 -          Write-Host "Success: Project 
+           - '$projectName' created with ICMwRIPER-5 
+           - template files."
+       150 -          exit 0
+       151 -      }
+       152 -  
+       153 -      "story" {
+       154 -          # Story subcommand handler
+       155 -          # Store story name
+       156 -          $storyName = $Argument
+       157 -  
+       158 -          # Check if source file exists
+       159 -          if (-not (Test-Path -Path 
+           - $storyName -PathType Leaf)) {
+       160 -              Write-Host "Error: File 
+           - '$storyName' does not exist."
+       161 -              exit 1
+       162 -          }
+       163 -  
+       164 -          # Generate timestamp
+       165 -          $timestamp = Get-ICMTimestamp
+       166 -  
+       167 -          # Define target filename
+       168 -          $targetFile = 
+           - "icm-story-$timestamp.md"
+       169 -  
+       170 -          # Copy file
+       171 -          try {
+       172 -              Copy-Item -Path $storyName 
+           - -Destination $targetFile -ErrorAction Stop
+       173 -              Write-Host "Success: Copied 
+           - '$storyName' to '$targetFile'."
+       174 -              exit 0
+       175 -          }
+       176 -          catch {
+       177 -              Write-Host "Error: Failed to 
+           - copy '$storyName' to '$targetFile'."
+       178 -              exit 1
+       179 -          }
+       180 -      }
+       181 -  
+       182 -      "bubble" {
+       183 -          # Bubble subcommand handler
+       184 -          # Store bubble name
+       185 -          $bubbleName = $Argument
+       186 -  
+       187 -          # Check if source file exists
+       188 -          if (-not (Test-Path -Path 
+           - $bubbleName -PathType Leaf)) {
+       189 -              Write-Host "Error: File 
+           - '$bubbleName' does not exist."
+       190 -              exit 1
+       191 -          }
+       192 -  
+       193 -          # Find the latest icm-story-*.md 
+           - file
+       194 -          $latestStory = 
+           - Get-LatestStoryFile
+       195 -  
+       196 -          # Check if any story file exists
+       197 -          if ($latestStory -eq $null) {
+       198 -              Write-Host "Error: No 
+           - icm-story-*.md files found in current 
+           - directory."
+       199 -              exit 1
+       200 -          }
+       201 -  
+       202 -          # Extract timestamp from the 
+           - latest story filename
+       203 -          $timestamp = 
+           - Get-TimestampFromFilename -Filename 
+           - $latestStory
+       204 -  
+       205 -          # Define target filename
+       206 -          $targetFile = 
+           - "icm-bubble-$timestamp.md"
+       207 -  
+       208 -          # Copy file
+       209 -          try {
+       210 -              Copy-Item -Path $bubbleName 
+           - -Destination $targetFile -ErrorAction Stop
+       211 -          }
+       212 -          catch {
+       213 -              Write-Host "Error: Failed to 
+           - copy '$bubbleName' to '$targetFile'."
+       214 -              exit 1
+       215 -          }
+       216 -  
+       217 -          # Replace the story reference 
+           - with the latest story filename
+       218 -          Update-StoryReferences -FilePath 
+           - $targetFile -NewStoryFilename $latestStory
+       219 -  
+       220 -          # Success message
+       221 -          Write-Host "Success: Copied 
+           - '$bubbleName' to '$targetFile' and updated
+           -  story reference to '$latestStory'."
+       222 -          exit 0
+       223 -      }
+       224 -  
+       107        "snb" {
+       108            # SNB (Story aNd Bubble) 
+             subcommand handler
+       109            # Store story name
+
+● Update(icmwriper-5-for-pwsh.ps1)
+  ⎿  Updated icmwriper-5-for-pwsh.ps1 with 1 addition and
+     1 removal
+       227        }
+       228    
+       229        default {
+       230 -          Write-Host "Error: Unknown 
+           -  command '$SubCommand'. Supported 
+           -  commands: 'bubble-log', 'generate
+           -  ', 'generate-html-data-dashboard'
+           -  , 'story', 'bubble', 'snb'."
+       230 +          Write-Host "Error: Unknown 
+           +  command '$SubCommand'. Supported 
+           +  commands: 'bubble-log', 'snb
+           +  ', 'generate-html-data-dashboard'."
+       231            exit 1
+       232        }
+       233    }
+       234   \ No newline at end of file
+
+● Now let me verify the changes by reading the updated
+  scripts to ensure they're correct:
+
+● Read(icmwriper-5-for-ubuntu)
+  ⎿  Read 142 lines
+
+● Read(icmwriper-5-for-macos)
+  ⎿  Read 142 lines
+
+● Read(icmwriper-5-for-pwsh.ps1)
+  ⎿  Read 233 lines
+
+● Perfect! The scripts have been successfully updated. Now
+   I notice that the PowerShell script still has unused
+  helper functions (Get-LatestStoryFile,
+  Get-TimestampFromFilename, Update-StoryReferences) that
+  were only used by the removed bubble subcommand. Let me
+  clean those up as well:
+
+● Update(icmwriper-5-for-pwsh.ps1)
+  ⎿  Updated icmwriper-5-for-pwsh.ps1 with 18 removals 
+       37        }
+       38    }
+       39    
+       40 -  # Function to find latest story file
+       41 -  function Get-LatestStoryFile {
+       42 -      $storyFiles = Get-ChildItem -Path "." 
+          - -Filter "icm-story-*.md" -ErrorAction 
+          - SilentlyContinue | Sort-Object 
+          - LastWriteTime -Descending
+       43 -      if ($storyFiles.Count -gt 0) {
+       44 -          return $storyFiles[0].Name
+       45 -      }
+       46 -      return $null
+       47 -  }
+       48 -  
+       49 -  # Function to extract timestamp from 
+          - filename
+       50 -  function Get-TimestampFromFilename {
+       51 -      param([string]$Filename)
+       52 -  
+       53 -      # Remove "icm-story-" prefix and ".md"
+          -  suffix
+       54 -      $timestamp = $Filename -replace 
+          - "^icm-story-", "" -replace "\.md$", ""
+       55 -      return $timestamp
+       56 -  }
+       57 -  
+       40    # Function to update story references in 
+            file
+       41    function Update-StoryReferences {
+       42        param(
+
+● Excellent! All modifications are complete. Let me now
+  verify the final line counts and structure of all three
+  scripts:
+
+● Bash(wc -l icmwriper-5-for-ubuntu icmwriper-5-for-macos
+      icmwriper-5-for-pwsh.ps1)
+  ⎿    141 icmwriper-5-for-ubuntu  
+       141 icmwriper-5-for-macos
+       214 icmwriper-5-for-pwsh.ps1
+       496 total
+
+● Perfect! The scripts have been successfully reduced:
+
+  Ubuntu script: 248 lines → 141 lines (107 lines removed)
+  macOS script: 249 lines → 141 lines (108 lines removed)
+  PowerShell script: 351 lines → 214 lines (137 lines
+  removed)
+
+  Let me create a quick test to verify the remaining
+  subcommands still work correctly:
+
+● Bash(./icmwriper-5-for-ubuntu 2>&1 | head -1)
+  ⎿ Usage: icmwriper-5-for-ubuntu {bubble-log | snb <stor
+    y-name> | generate-html-data-dashboard <project-name>
+    }
+
+
+
+● Bash(./icmwriper-5-for-macos 2>&1 | head -1)
+  ⎿  Interrupted · What should Claude do instead?
+
+● Bash(pwsh -File icmwriper-5-for-pwsh.ps1 2>&1 | head -1)
+  ⎿  Interrupted · What should Claude do instead?
+
+> macos和powershell的命令就不必测试了。因为这台电脑是wsl2 
+ubuntu。 
+
+● [MODE: EXECUTE]
+
+  明白了，那我只验证Ubuntu脚本即可。让我测试一下删除的命令
+  是否真的不可用，以及保留的命令是否仍然正常工作：
+
+● Bash(./icmwriper-5-for-ubuntu generate test-project 2>&1)
+  ⎿  Error: Unknown command 'generate'. Supported commands: 
+     'bubble-log', 'snb', 'generate-html-data-dashboard'.
+
+● Bash(./icmwriper-5-for-ubuntu story test-story 2>&1)
+  ⎿  Error: Unknown command 'story'. Supported commands: 
+     'bubble-log', 'snb', 'generate-html-data-dashboard'.
+
+● Bash(./icmwriper-5-for-ubuntu bubble test-bubble 2>&1)
+  ⎿  Error: Unknown command 'bubble'. Supported commands: 
+     'bubble-log', 'snb', 'generate-html-data-dashboard'.
+
+● Bash(./icmwriper-5-for-ubuntu bubble-log 2>&1)
+  ⎿ Success: Created empty file 'bubble-2025-10-16--22-52
+    .md'.
+
+
+● Bash(rm -f bubble-2025-10-16--22-52.md)
+  ⎿  (No content)
+
+● 完美！执行完成。
+
+  执行总结
+
+  已成功从所有3个平台脚本中删除了3个子命令（generate、stor
+  y、bubble），并保留了3个子命令正常工作。
+
+  验证结果：
+  - ✅ generate 命令已删除 - 返回错误信息
+  - ✅ story 命令已删除 - 返回错误信息
+  - ✅ bubble 命令已删除 - 返回错误信息
+  - ✅ bubble-log 命令仍然正常工作 - 成功创建文件
+  - ✅ 其余2个命令（snb,
+  generate-html-data-dashboard）的代码仍然完整保留
+
+  脚本精简效果：
+  - Ubuntu: 248行 → 141行（减少107行，43%精简）
+  - macOS: 249行 → 141行（减少108行，43%精简）
+  - PowerShell: 351行 → 214行（减少137行，39%精简）
+
+  所有3个脚本现在只包含3个子命令：
+  1. bubble-log - 创建空的时间戳日志文件
+  2. snb - 创建配对的story-bubble文件
+  3. generate-html-data-dashboard - 生成HTML数据仪表板项目
+
+
+
