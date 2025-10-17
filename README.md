@@ -218,9 +218,9 @@ All three commands (`icm4u`, `icm4m`, and `icm4p.ps1`) provide identical functio
 ### 4. Command Usage
 
 The platform commands provide essential subcommands for managing your ICMwRIPER-5 projects:
-- **Ubuntu**: 4 subcommands (includes Next.js web app support)
-- **macOS**: 3 subcommands
-- **Windows PowerShell**: 3 subcommands
+- **Ubuntu**: 4 subcommands
+- **macOS**: 4 subcommands
+- **Windows PowerShell**: 4 subcommands
 
 **Command syntax**:
 - **Ubuntu**: `icm4u <subcommand> <argument>`
@@ -329,10 +329,12 @@ pwsh -File icm4p.ps1 create-html-data-dashboard my-dashboard-project
   - `.gitignore` - Git ignore configuration
 - Specialized for Python/HTML/CSS/JavaScript data visualization projects
 
-#### create-nextjs-web-app - Create Next.js Web App Project (Ubuntu Only)
+#### create-nextjs-web-app - Create Next.js Web App Project
 
 **Syntax**:
 - **Ubuntu**: `icm4u create-nextjs-web-app <project-name>`
+- **macOS**: `./icm4m create-nextjs-web-app <project-name>`
+- **Windows**: `pwsh -File icm4p.ps1 create-nextjs-web-app <project-name>`
 
 **Purpose**: Bootstrap a new ICMwRIPER-5 project with Next.js web app resources
 
@@ -343,6 +345,16 @@ pwsh -File icm4p.ps1 create-html-data-dashboard my-dashboard-project
 icm4u create-nextjs-web-app my-nextjs-app
 ```
 
+**macOS**:
+```bash
+./icm4m create-nextjs-web-app my-nextjs-app
+```
+
+**Windows PowerShell**:
+```powershell
+pwsh -File icm4p.ps1 create-nextjs-web-app my-nextjs-app
+```
+
 **What it does**:
 - Creates project directory with 5 files
 - Downloads standard template files plus:
@@ -351,7 +363,7 @@ icm4u create-nextjs-web-app my-nextjs-app
   - `.gitignore` - Next.js-specific Git ignore configuration
 - Specialized for Next.js/React/TypeScript web application projects
 
-**Platform availability**: Ubuntu only (as of 2025-10-17)
+**Platform availability**: All platforms (Ubuntu, macOS, Windows PowerShell)
 
 ### 5. Context Management and AI Tool Switching
 

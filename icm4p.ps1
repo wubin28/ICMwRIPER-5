@@ -13,7 +13,7 @@ param(
 
 # Function to show usage information
 function Show-Usage {
-    Write-Host "Usage: icmwriper-5-for-pwsh {b | snb <story-name> | create-html-data-dashboard <project-name>}"
+    Write-Host "Usage: icmwriper-5-for-pwsh {b | snb <story-name> | create-html-data-dashboard <project-name> | create-nextjs-web-app <project-name>}"
 }
 
 # Function to create timestamp in ICMwRIPER-5 format
@@ -208,8 +208,78 @@ switch ($SubCommand) {
         exit 0
     }
 
+    "create-nextjs-web-app" {
+        # Generate Next.js Web App subcommand handler
+        # Store project name
+        $projectName = $Argument
+
+        # Directory existence check
+        if (Test-Path -Path $projectName -PathType Container) {
+            Write-Host "Error: Directory '$projectName' already exists."
+            exit 1
+        }
+
+        # GitHub repository configuration
+        $githubRawUrl = "https://raw.githubusercontent.com/wubin28/ICMwRIPER-5/main"
+
+        # Define files to download with their paths
+        # Root files (2 files)
+        $rootFiles = @("icmwriper-5.md", "README.md")
+
+        # Subdirectory files (3 files)
+        $subdirFiles = @(
+            "for-nextjs-web-app/icm-bubble-template-for-nextjs-web-app.md",
+            "for-nextjs-web-app/icm-story-template-for-nextjs-web-app.md",
+            "for-nextjs-web-app/.gitignore"
+        )
+
+        # Create project directory
+        try {
+            New-Item -Path $projectName -ItemType Directory -Force | Out-Null
+        }
+        catch {
+            Write-Host "Error: Failed to create directory '$projectName'."
+            exit 1
+        }
+
+        # Download root files
+        foreach ($filename in $rootFiles) {
+            $url = "$githubRawUrl/$filename"
+            $outputPath = Join-Path $projectName $filename
+
+            if (-not (Download-File -Url $url -OutputPath $outputPath)) {
+                Write-Host "Error: Failed to download $filename from GitHub. Please check your internet connection and repository availability."
+                Remove-Item -Path $projectName -Recurse -Force -ErrorAction SilentlyContinue
+                exit 1
+            }
+        }
+
+        # Download subdirectory files
+        foreach ($filepath in $subdirFiles) {
+            # Extract just the filename for the target
+            $filename = Split-Path $filepath -Leaf
+            $url = "$githubRawUrl/$filepath"
+            $outputPath = Join-Path $projectName $filename
+
+            if (-not (Download-File -Url $url -OutputPath $outputPath)) {
+                Write-Host "Error: Failed to download $filepath from GitHub. Please check your internet connection and repository availability."
+                Remove-Item -Path $projectName -Recurse -Force -ErrorAction SilentlyContinue
+                exit 1
+            }
+        }
+
+        # Rename README.md
+        $readmePath = Join-Path $projectName "README.md"
+        $newReadmePath = Join-Path $projectName "icmwriper-5-README.md"
+        Move-Item -Path $readmePath -Destination $newReadmePath
+
+        # Success message
+        Write-Host "Success: Project '$projectName' created with ICMwRIPER-5 template files and Next.js web app resources."
+        exit 0
+    }
+
     default {
-        Write-Host "Error: Unknown command '$SubCommand'. Supported commands: 'b', 'snb', 'create-html-data-dashboard'."
+        Write-Host "Error: Unknown command '$SubCommand'. Supported commands: 'b', 'snb', 'create-html-data-dashboard', 'create-nextjs-web-app'."
         exit 1
     }
 }
