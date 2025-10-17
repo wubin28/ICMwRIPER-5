@@ -36,7 +36,7 @@ ICMwRIPER-5 provides native command-line tools for Ubuntu, macOS, and Windows Po
 
 ### Windows PowerShell
 - **Environment**: Windows 11 with PowerShell 7.5.3 or later
-- **Command**: `icmwriper-5.ps1` (after global install) or `pwsh -File icm4p.ps1` (local script)
+- **Command**: `icm4p.ps1` (after global install) or `pwsh -File icm4p.ps1` (local script)
 - **Installation**: Optional global installation to user PATH or local script usage
 - **Prerequisites**: PowerShell 7.5.3+, Git
 
@@ -184,7 +184,7 @@ Choose your platform and follow the corresponding installation instructions:
    @"
    #!/usr/bin/env pwsh
    & "$userScriptsPath\icm4p.ps1" @args
-   "@ | Out-File -FilePath "$userScriptsPath\icmwriper-5.ps1" -Encoding UTF8
+   "@ | Out-File -FilePath "$userScriptsPath\icm4p.ps1" -Encoding UTF8
    ```
 
    **Notes**:
@@ -225,7 +225,7 @@ The platform commands provide essential subcommands for managing your ICMwRIPER-
 **Command syntax**:
 - **Ubuntu**: `icm4u <subcommand> <argument>`
 - **macOS**: `./icm4m <subcommand> <argument>`
-- **Windows**: `icmwriper-5.ps1 <subcommand> <argument>` (after global install) or `pwsh -File icm4p.ps1 <subcommand> <argument>` (local script)
+- **Windows**: `icm4p.ps1 <subcommand> <argument>` (after global install) or `pwsh -File icm4p.ps1 <subcommand> <argument>` (local script)
 
 #### snb - Create Matched Story-Bubble Pair
 
@@ -411,7 +411,7 @@ When starting a new iteration:
    **Windows PowerShell**:
    ```powershell
    # After global installation
-   icmwriper-5.ps1 snb icm-story-template.md
+   icm4p.ps1 snb icm-story-template.md
 
    # Or without global installation
    pwsh -File icm4p.ps1 snb icm-story-template.md
@@ -477,7 +477,7 @@ ICMwRIPER-5 is particularly effective for:
 8. **Command Usage**: Use the appropriate command for your platform:
    - Ubuntu: Use `icm4u` after global installation
    - macOS: Use `./icm4m` as a local script
-   - Windows: Use `icmwriper-5.ps1` after global installation, or `pwsh -File icm4p.ps1` for local script execution
+   - Windows: Use `icm4p.ps1` after global installation, or `pwsh -File icm4p.ps1` for local script execution
 
 ## Contributing
 
