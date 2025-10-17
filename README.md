@@ -240,19 +240,19 @@ The platform commands provide essential subcommands for managing your ICMwRIPER-
 
 **Ubuntu**:
 ```bash
-icm4u snb icm-story-template.md
+icm4u snb <source-story-file>
 # Output: icm-story-2025-10-03--22-26.md and icm-bubble-2025-10-03--22-26.md
 ```
 
 **macOS**:
 ```bash
-./icm4m snb icm-story-template.md
+./icm4m snb <source-story-file>
 # Output: icm-story-2025-10-05--23-33.md and icm-bubble-2025-10-05--23-33.md
 ```
 
 **Windows PowerShell**:
 ```powershell
-pwsh -File icm4p.ps1 snb icm-story-template.md
+pwsh -File icm4p.ps1 snb <source-story-file>
 # Output: icm-story-2025-10-16--11-46.md and icm-bubble-2025-10-16--11-46.md
 ```
 
@@ -400,21 +400,21 @@ When starting a new iteration:
 
    **Ubuntu**:
    ```bash
-   icm4u snb icm-story-template.md
+   icm4u snb <source-story-file>
    ```
 
    **macOS**:
    ```bash
-   ./icm4m snb icm-story-template.md
+   ./icm4m snb <source-story-file>
    ```
 
    **Windows PowerShell**:
    ```powershell
    # After global installation
-   icm4p.ps1 snb icm-story-template.md
+   icm4p.ps1 snb <source-story-file>
 
    # Or without global installation
-   pwsh -File icm4p.ps1 snb icm-story-template.md
+   pwsh -File icm4p.ps1 snb <source-story-file>
    ```
 
    Or create them separately using `story` and `bubble` commands.
