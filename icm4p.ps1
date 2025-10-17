@@ -13,10 +13,10 @@ param(
 
 # Function to show usage information
 function Show-Usage {
-    Write-Host "Usage: icmwriper-5-for-pwsh {bubble-log | snb <story-name> | generate-html-data-dashboard <project-name>}"
+    Write-Host "Usage: icmwriper-5-for-pwsh {b | snb <story-name> | create-html-data-dashboard <project-name>}"
 }
 
-# Function to generate timestamp in ICMwRIPER-5 format
+# Function to create timestamp in ICMwRIPER-5 format
 function Get-ICMTimestamp {
     return (Get-Date -Format "yyyy-MM-dd--HH-mm")
 }
@@ -52,8 +52,8 @@ function Update-StoryReferences {
 
 # Special handling for single-argument commands
 if ([string]::IsNullOrEmpty($Argument)) {
-    if ($SubCommand -eq "bubble-log") {
-        # Bubble-log subcommand handler
+    if ($SubCommand -eq "b") {
+        # b subcommand handler
         # Generate timestamp
         $timestamp = Get-ICMTimestamp
 
@@ -139,7 +139,7 @@ switch ($SubCommand) {
         exit 0
     }
 
-    "generate-html-data-dashboard" {
+    "create-html-data-dashboard" {
         # Generate HTML Data Dashboard subcommand handler
         # Store project name
         $projectName = $Argument
@@ -209,7 +209,7 @@ switch ($SubCommand) {
     }
 
     default {
-        Write-Host "Error: Unknown command '$SubCommand'. Supported commands: 'bubble-log', 'snb', 'generate-html-data-dashboard'."
+        Write-Host "Error: Unknown command '$SubCommand'. Supported commands: 'b', 'snb', 'create-html-data-dashboard'."
         exit 1
     }
 }

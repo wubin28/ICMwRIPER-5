@@ -24,19 +24,19 @@ ICMwRIPER-5 provides native command-line tools for Ubuntu, macOS, and Windows Po
 
 ### Ubuntu (WSL2)
 - **Environment**: Windows 11 with WSL2 (Ubuntu 24.04 or later)
-- **Command**: `icmwriper-5-for-ubuntu`
+- **Command**: `icm4u`
 - **Installation**: Global installation to `/usr/local/bin/`
 - **Prerequisites**: Git, curl
 
 ### macOS
 - **Environment**: macOS Sequoia 15.6.1 or later
-- **Command**: `./icmwriper-5-for-macos` (local script)
+- **Command**: `./icm4m` (local script)
 - **Installation**: Local script usage
 - **Prerequisites**: iTerm2, zsh, Git, curl
 
 ### Windows PowerShell
 - **Environment**: Windows 11 with PowerShell 7.5.3 or later
-- **Command**: `icmwriper-5.ps1` (after global install) or `pwsh -File icmwriper-5-for-pwsh.ps1` (local script)
+- **Command**: `icmwriper-5.ps1` (after global install) or `pwsh -File icm4p.ps1` (local script)
 - **Installation**: Optional global installation to user PATH or local script usage
 - **Prerequisites**: PowerShell 7.5.3+, Git
 
@@ -100,20 +100,20 @@ Choose your platform and follow the corresponding installation instructions:
 
 2. **Install the command globally**:
    ```bash
-   sudo cp icmwriper-5-for-ubuntu /usr/local/bin/
-   sudo chmod +x /usr/local/bin/icmwriper-5-for-ubuntu
+   sudo cp icm4u /usr/local/bin/
+   sudo chmod +x /usr/local/bin/icm4u
    ```
 
 3. **Verify installation**:
    ```bash
-   which icmwriper-5-for-ubuntu
+   which icm4u
    ```
 
-   You should see: `/usr/local/bin/icmwriper-5-for-ubuntu`
+   You should see: `/usr/local/bin/icm4u`
 
 4. **Test the command**:
    ```bash
-   icmwriper-5-for-ubuntu generate my-test-project
+   icm4u b
    ```
 
    This will create a new directory `my-test-project` with the ICMwRIPER-5 template files.
@@ -137,12 +137,12 @@ Choose your platform and follow the corresponding installation instructions:
 
 2. **Make the script executable**:
    ```bash
-   chmod +x icmwriper-5-for-macos
+   chmod +x icm4m
    ```
 
 3. **Test the command**:
    ```bash
-   ./icmwriper-5-for-macos generate my-test-project
+   ./icm4m b
    ```
 
    This will create a new directory `my-test-project` with the ICMwRIPER-5 template files.
@@ -170,7 +170,7 @@ Choose your platform and follow the corresponding installation instructions:
    ```powershell
    $userScriptsPath = "$env:USERPROFILE\Documents\PowerShell\Scripts"
    New-Item -Path $userScriptsPath -ItemType Directory -Force
-   Copy-Item icmwriper-5-for-pwsh.ps1 $userScriptsPath\
+   Copy-Item icm4p.ps1 $userScriptsPath\
    ```
 
    **Segment 2: Set environment variables**
@@ -183,7 +183,7 @@ Choose your platform and follow the corresponding installation instructions:
    ```powershell
    @"
    #!/usr/bin/env pwsh
-   & "$userScriptsPath\icmwriper-5-for-pwsh.ps1" @args
+   & "$userScriptsPath\icm4p.ps1" @args
    "@ | Out-File -FilePath "$userScriptsPath\icmwriper-5.ps1" -Encoding UTF8
    ```
 
@@ -195,19 +195,19 @@ Choose your platform and follow the corresponding installation instructions:
 3. **Verify installation** (if globally installed):
    ```powershell
    # Restart PowerShell session, then test
-   icmwriper-5-for-pwsh.ps1 generate my-test-project
+   icm4p.ps1 b
    ```
 
 4. **Alternative: Test without global installation**:
    ```powershell
-   pwsh -File icmwriper-5-for-pwsh.ps1 generate my-test-project
+   pwsh -File icm4p.ps1 b
    ```
 
    This will create a new directory `my-test-project` with the ICMwRIPER-5 template files.
 
 #### What the Commands Do
 
-All three commands (`icmwriper-5-for-ubuntu`, `icmwriper-5-for-macos`, and `icmwriper-5-for-pwsh.ps1`) provide identical functionality:
+All three commands (`icm4u`, `icm4m`, and `icm4p.ps1`) provide identical functionality:
 - Creates a new project directory with the specified name
 - Downloads the following template files from this repository:
   - `icm-bubble-template.md` - Starting prompt template
@@ -223,16 +223,16 @@ The platform commands provide essential subcommands for managing your ICMwRIPER-
 - **Windows PowerShell**: 3 subcommands
 
 **Command syntax**:
-- **Ubuntu**: `icmwriper-5-for-ubuntu <subcommand> <argument>`
-- **macOS**: `./icmwriper-5-for-macos <subcommand> <argument>`
-- **Windows**: `icmwriper-5.ps1 <subcommand> <argument>` (after global install) or `pwsh -File icmwriper-5-for-pwsh.ps1 <subcommand> <argument>` (local script)
+- **Ubuntu**: `icm4u <subcommand> <argument>`
+- **macOS**: `./icm4m <subcommand> <argument>`
+- **Windows**: `icmwriper-5.ps1 <subcommand> <argument>` (after global install) or `pwsh -File icm4p.ps1 <subcommand> <argument>` (local script)
 
 #### snb - Create Matched Story-Bubble Pair
 
 **Syntax**:
-- **Ubuntu**: `icmwriper-5-for-ubuntu snb <source-story-file>`
-- **macOS**: `./icmwriper-5-for-macos snb <source-story-file>`
-- **Windows**: `pwsh -File icmwriper-5-for-pwsh.ps1 snb <source-story-file>`
+- **Ubuntu**: `icm4u snb <source-story-file>`
+- **macOS**: `./icm4m snb <source-story-file>`
+- **Windows**: `pwsh -File icm4p.ps1 snb <source-story-file>`
 
 **Purpose**: Create both story and bubble files simultaneously with identical timestamps
 
@@ -240,19 +240,19 @@ The platform commands provide essential subcommands for managing your ICMwRIPER-
 
 **Ubuntu**:
 ```bash
-icmwriper-5-for-ubuntu snb icm-story-template.md
+icm4u snb icm-story-template.md
 # Output: icm-story-2025-10-03--22-26.md and icm-bubble-2025-10-03--22-26.md
 ```
 
 **macOS**:
 ```bash
-./icmwriper-5-for-macos snb icm-story-template.md
+./icm4m snb icm-story-template.md
 # Output: icm-story-2025-10-05--23-33.md and icm-bubble-2025-10-05--23-33.md
 ```
 
 **Windows PowerShell**:
 ```powershell
-pwsh -File icmwriper-5-for-pwsh.ps1 snb icm-story-template.md
+pwsh -File icm4p.ps1 snb icm-story-template.md
 # Output: icm-story-2025-10-16--11-46.md and icm-bubble-2025-10-16--11-46.md
 ```
 
@@ -263,11 +263,11 @@ pwsh -File icmwriper-5-for-pwsh.ps1 snb icm-story-template.md
 
 **Benefit**: Ensures perfect pairing of story and bubble files with one command.
 
-#### bubble-log - Create Timestamped Log File
+#### b - Create Timestamped Log File
 
 **Syntax**:
-- **Ubuntu**: `icmwriper-5-for-ubuntu bubble-log`
-- **Windows**: `pwsh -File icmwriper-5-for-pwsh.ps1 bubble-log`
+- **Ubuntu**: `icm4u b`
+- **Windows**: `pwsh -File icm4p.ps1 b`
 
 **Purpose**: Create an empty timestamped markdown file for logging or notes
 
@@ -275,19 +275,19 @@ pwsh -File icmwriper-5-for-pwsh.ps1 snb icm-story-template.md
 
 **Ubuntu**:
 ```bash
-icmwriper-5-for-ubuntu bubble-log
+icm4u b
 # Output: bubble-2025-10-16--12-15.md
 ```
 
 **Windows PowerShell**:
 ```powershell
-pwsh -File icmwriper-5-for-pwsh.ps1 bubble-log
+pwsh -File icm4p.ps1 b
 # Output: bubble-2025-10-16--12-15.md
 ```
 
 **macOS**:
 ```bash
-./icmwriper-5-for-macos bubble-log
+./icm4m b
 # Output: bubble-2025-10-16--22-25.md
 ```
 
@@ -296,12 +296,12 @@ pwsh -File icmwriper-5-for-pwsh.ps1 bubble-log
 - Uses current system timestamp (independent of story files)
 - Useful for quick session notes or logging
 
-#### generate-html-data-dashboard - Create Data Dashboard Project
+#### create-html-data-dashboard - Create Data Dashboard Project
 
 **Syntax**:
-- **Ubuntu**: `icmwriper-5-for-ubuntu generate-html-data-dashboard <project-name>`
-- **macOS**: `./icmwriper-5-for-macos generate-html-data-dashboard <project-name>`
-- **Windows**: `pwsh -File icmwriper-5-for-pwsh.ps1 generate-html-data-dashboard <project-name>`
+- **Ubuntu**: `icm4u create-html-data-dashboard <project-name>`
+- **macOS**: `./icm4m create-html-data-dashboard <project-name>`
+- **Windows**: `pwsh -File icm4p.ps1 create-html-data-dashboard <project-name>`
 
 **Purpose**: Bootstrap a new ICMwRIPER-5 project with additional data dashboard resources
 
@@ -309,30 +309,30 @@ pwsh -File icmwriper-5-for-pwsh.ps1 bubble-log
 
 **Ubuntu**:
 ```bash
-icmwriper-5-for-ubuntu generate-html-data-dashboard my-dashboard-project
+icm4u create-html-data-dashboard my-dashboard-project
 ```
 
 **macOS**:
 ```bash
-./icmwriper-5-for-macos generate-html-data-dashboard my-dashboard-project
+./icm4m create-html-data-dashboard my-dashboard-project
 ```
 
 **Windows PowerShell**:
 ```powershell
-pwsh -File icmwriper-5-for-pwsh.ps1 generate-html-data-dashboard my-dashboard-project
+pwsh -File icm4p.ps1 create-html-data-dashboard my-dashboard-project
 ```
 
 **What it does**:
-- Creates project directory with 6 files (vs 4 files in regular generate)
+- Creates project directory with 6 files (vs 4 files in regular create)
 - Downloads standard template files plus:
   - `first-80-rows-agentic_ai_performance_dataset_20250622.xlsx` - Sample dataset
   - `.gitignore` - Git ignore configuration
 - Specialized for Python/HTML/CSS/JavaScript data visualization projects
 
-#### generate-nextjs-web-app - Create Next.js Web App Project (Ubuntu Only)
+#### create-nextjs-web-app - Create Next.js Web App Project (Ubuntu Only)
 
 **Syntax**:
-- **Ubuntu**: `icmwriper-5-for-ubuntu generate-nextjs-web-app <project-name>`
+- **Ubuntu**: `icm4u create-nextjs-web-app <project-name>`
 
 **Purpose**: Bootstrap a new ICMwRIPER-5 project with Next.js web app resources
 
@@ -340,7 +340,7 @@ pwsh -File icmwriper-5-for-pwsh.ps1 generate-html-data-dashboard my-dashboard-pr
 
 **Ubuntu**:
 ```bash
-icmwriper-5-for-ubuntu generate-nextjs-web-app my-nextjs-app
+icm4u create-nextjs-web-app my-nextjs-app
 ```
 
 **What it does**:
@@ -357,7 +357,7 @@ icmwriper-5-for-ubuntu generate-nextjs-web-app my-nextjs-app
 
 #### Generating Context Files
 
-During project development, you can generate a comprehensive context file to:
+During project development, you can create a comprehensive context file to:
 - Switch to other AI tools while preserving project state
 - Clear the current AI chat context and start fresh with full context
 - Share project status with team members
@@ -365,13 +365,13 @@ During project development, you can generate a comprehensive context file to:
 
 **Context file naming convention**: `icm-context-yyyy-mm-dd--hh-mm.md`
 
-**When to generate**:
+**When to create**:
 - Before switching from one AI assistant to another
 - When the chat context becomes too large or cluttered
 - After completing major milestones
 - Before taking breaks in development
 
-**How to generate**:
+**How to create**:
 Ask your AI assistant to create a comprehensive context file documenting:
 - Executive summary of the project
 - Business requirements implemented
@@ -400,12 +400,12 @@ When starting a new iteration:
 
    **Ubuntu**:
    ```bash
-   icmwriper-5-for-ubuntu snb icm-story-template.md
+   icm4u snb icm-story-template.md
    ```
 
    **macOS**:
    ```bash
-   ./icmwriper-5-for-macos snb icm-story-template.md
+   ./icm4m snb icm-story-template.md
    ```
 
    **Windows PowerShell**:
@@ -414,14 +414,14 @@ When starting a new iteration:
    icmwriper-5.ps1 snb icm-story-template.md
 
    # Or without global installation
-   pwsh -File icmwriper-5-for-pwsh.ps1 snb icm-story-template.md
+   pwsh -File icm4p.ps1 snb icm-story-template.md
    ```
 
    Or create them separately using `story` and `bubble` commands.
 
-2. Edit the generated story file (`icm-story-yyyy-mm-dd--hh-mm.md`) according to your specific iteration requirements
+2. Edit the created story file (`icm-story-yyyy-mm-dd--hh-mm.md`) according to your specific iteration requirements
 
-3. Edit the generated bubble file (`icm-bubble-yyyy-mm-dd--hh-mm.md`) with appropriate prompts for your AI assistant
+3. Edit the created bubble file (`icm-bubble-yyyy-mm-dd--hh-mm.md`) with appropriate prompts for your AI assistant
 
 4. Send the prompts from `icm-bubble-yyyy-mm-dd--hh-mm.md` to your AI assistant to begin the RIPER-5 workflow
 
@@ -434,15 +434,15 @@ Progress through each RIPER-5 phase systematically. Ensure your AI assistant dec
 ```
 ├── icm-bubble-template.md              # Starting prompt template
 ├── icm-story-template.md               # Story description template
-├── icmwriper-5-for-ubuntu              # Command-line tool for Ubuntu (WSL2)
-├── icmwriper-5-for-macos               # Command-line tool for macOS
-├── icmwriper-5-for-pwsh.ps1            # Command-line tool for Windows PowerShell
+├── icm4u              # Command-line tool for Ubuntu (WSL2)
+├── icm4m               # Command-line tool for macOS
+├── icm4p.ps1            # Command-line tool for Windows PowerShell
 ├── icmwriper-5.md                      # Updated RIPER-5 protocol rules
 ├── README.md                           # This file
 ├── icm-bubble-yyyy-mm-dd--hh-mm.md     # Iteration prompts (created per iteration)
 ├── icm-story-yyyy-mm-dd--hh-mm.md      # Iteration stories (created per iteration)
 ├── icm-context-yyyy-mm-dd--hh-mm.md    # Context snapshots (for AI tool switching)
-├── bubble-yyyy-mm-dd--hh-mm.md         # Log files (created by bubble-log command)
+├── bubble-yyyy-mm-dd--hh-mm.md         # Log files (created by b command)
 └── todo-yyyy-mm-dd--hh-mm.md           # Task tracking (created during PLAN phase)
 ```
 
@@ -475,9 +475,9 @@ ICMwRIPER-5 is particularly effective for:
 6. **Maintain Timestamps**: Use consistent naming for all iteration files
 7. **Platform Consistency**: When working on cross-platform projects, test changes across all supported platforms
 8. **Command Usage**: Use the appropriate command for your platform:
-   - Ubuntu: Use `icmwriper-5-for-ubuntu` after global installation
-   - macOS: Use `./icmwriper-5-for-macos` as a local script
-   - Windows: Use `icmwriper-5.ps1` after global installation, or `pwsh -File icmwriper-5-for-pwsh.ps1` for local script execution
+   - Ubuntu: Use `icm4u` after global installation
+   - macOS: Use `./icm4m` as a local script
+   - Windows: Use `icmwriper-5.ps1` after global installation, or `pwsh -File icm4p.ps1` for local script execution
 
 ## Contributing
 

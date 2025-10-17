@@ -2,8 +2,8 @@
 
 # Special handling for single-argument commands
 if [ $# -eq 1 ]; then
-    if [ "$1" = "bubble-log" ]; then
-        # Bubble-log subcommand handler
+    if [ "$1" = "b" ]; then
+        # b subcommand handler
         # Generate timestamp
         TIMESTAMP=$(date +"%Y-%m-%d--%H-%M")
 
@@ -21,14 +21,14 @@ if [ $# -eq 1 ]; then
         exit 0
     else
         echo "Error: Unknown single-argument command '$1'."
-        echo "Usage: icmwriper-5-for-macos {bubble-log | snb <story-name> | generate-html-data-dashboard <project-name>}"
+        echo "Usage: icmwriper-5-for-macos {b | snb <story-name> | create-html-data-dashboard <project-name>}"
         exit 1
     fi
 fi
 
 # Argument count validation
 if [ $# -ne 2 ]; then
-    echo "Usage: icmwriper-5-for-macos {bubble-log | snb <story-name> | generate-html-data-dashboard <project-name>}"
+    echo "Usage: icmwriper-5-for-macos {b | snb <story-name> | create-html-data-dashboard <project-name>}"
     exit 1
 fi
 
@@ -80,7 +80,7 @@ if [ "$1" = "snb" ]; then
     echo "Success: Copied 'icm-bubble-template.md' to '$BUBBLE_TARGET' and updated story reference to '$STORY_TARGET'."
     exit 0
 
-elif [ "$1" = "generate-html-data-dashboard" ]; then
+elif [ "$1" = "create-html-data-dashboard" ]; then
     # Generate HTML Data Dashboard subcommand handler
     # Store project name
     PROJECT_NAME="$2"
@@ -136,6 +136,6 @@ elif [ "$1" = "generate-html-data-dashboard" ]; then
     echo "Success: Project '$PROJECT_NAME' created with ICMwRIPER-5 template files and HTML data dashboard resources."
     exit 0
 else
-    echo "Error: Unknown command '$1'. Supported commands: 'bubble-log', 'snb', 'generate-html-data-dashboard'."
+    echo "Error: Unknown command '$1'. Supported commands: 'b', 'snb', 'create-html-data-dashboard'."
     exit 1
 fi
