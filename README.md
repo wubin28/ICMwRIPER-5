@@ -179,18 +179,11 @@ Choose your platform and follow the corresponding installation instructions:
    [Environment]::SetEnvironmentVariable("PATH", $env:PATH + ";$userScriptsPath", "User")
    ```
 
-   **Segment 3: Create command wrapper**
+   **Note on Script Renaming**: If you rename `icm4p.ps1` in the future (e.g., to `icm4p-new-name.ps1`), update the global installation by running:
    ```powershell
-   @"
-   #!/usr/bin/env pwsh
-   & "$userScriptsPath\icm4p.ps1" @args
-   "@ | Out-File -FilePath "$userScriptsPath\icm4p.ps1" -Encoding UTF8
+   $userScriptsPath = "$env:USERPROFILE\Documents\PowerShell\Scripts"
+   Copy-Item icm4p-new-name.ps1 $userScriptsPath\
    ```
-
-   **Notes**:
-   - Do NOT include comment lines (like `# Segment 3:`) when copying Segment 3
-   - The `@"` must be at the end of a line, and `"@` must be at the beginning of a new line with no leading spaces
-   - If you get stuck after pasting and see only blank lines, press `Ctrl+C` to cancel, then copy only the code without comments
 
 3. **Verify installation** (if globally installed):
    ```powershell
