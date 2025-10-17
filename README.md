@@ -218,9 +218,9 @@ All three commands (`icm4u`, `icm4m`, and `icm4p.ps1`) provide identical functio
 ### 4. Command Usage
 
 The platform commands provide essential subcommands for managing your ICMwRIPER-5 projects:
-- **Ubuntu**: 4 subcommands
-- **macOS**: 4 subcommands
-- **Windows PowerShell**: 4 subcommands
+- **Ubuntu**: 5 subcommands
+- **macOS**: 5 subcommands
+- **Windows PowerShell**: 5 subcommands
 
 **Command syntax**:
 - **Ubuntu**: `icm4u <subcommand> <argument>`
@@ -295,6 +295,43 @@ pwsh -File icm4p.ps1 b
 - Creates an empty (0-byte) markdown file with current timestamp
 - Uses current system timestamp (independent of story files)
 - Useful for quick session notes or logging
+
+#### bo - Create Bubble-Only File with Template Content
+
+**Syntax**:
+- **Ubuntu**: `icm4u bo`
+- **macOS**: `./icm4m bo`
+- **Windows**: `pwsh -File icm4p.ps1 bo`
+
+**Purpose**: Create a timestamped bubble file with pre-populated template content for standalone AI prompts
+
+**Examples**:
+
+**Ubuntu**:
+```bash
+icm4u bo
+# Output: icm-bubble-only-2025-10-17--14-22.md
+```
+
+**macOS**:
+```bash
+./icm4m bo
+# Output: icm-bubble-only-2025-10-17--14-22.md
+```
+
+**Windows PowerShell**:
+```powershell
+pwsh -File icm4p.ps1 bo
+# Output: icm-bubble-only-2025-10-17--14-22.md
+```
+
+**What it does**:
+- Creates a markdown file with content copied from `icm-bubble-only-template.md`
+- Uses current system timestamp (independent of story files)
+- Filename format: `icm-bubble-only-<timestamp>.md`
+- Useful for creating standalone prompts that can be directly copied to AI tools
+
+**Key difference from 'b' command**: The 'b' command creates an empty file, while 'bo' creates a file with template content
 
 #### create-html-data-dashboard - Create Data Dashboard Project
 
@@ -445,6 +482,7 @@ Progress through each RIPER-5 phase systematically. Ensure your AI assistant dec
 
 ```
 ├── icm-bubble-template.md              # Starting prompt template
+├── icm-bubble-only-template.md         # Standalone prompt template (no story required)
 ├── icm-story-template.md               # Story description template
 ├── icm4u              # Command-line tool for Ubuntu (WSL2)
 ├── icm4m               # Command-line tool for macOS
@@ -452,6 +490,7 @@ Progress through each RIPER-5 phase systematically. Ensure your AI assistant dec
 ├── icmwriper-5.md                      # Updated RIPER-5 protocol rules
 ├── README.md                           # This file
 ├── icm-bubble-yyyy-mm-dd--hh-mm.md     # Iteration prompts (created per iteration)
+├── icm-bubble-only-yyyy-mm-dd--hh-mm.md # Standalone prompts (created by bo command)
 ├── icm-story-yyyy-mm-dd--hh-mm.md      # Iteration stories (created per iteration)
 ├── icm-context-yyyy-mm-dd--hh-mm.md    # Context snapshots (for AI tool switching)
 ├── bubble-yyyy-mm-dd--hh-mm.md         # Log files (created by b command)

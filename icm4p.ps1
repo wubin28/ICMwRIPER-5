@@ -13,7 +13,7 @@ param(
 
 # Function to show usage information
 function Show-Usage {
-    Write-Host "Usage: icmwriper-5-for-pwsh {b | snb <story-name> | create-html-data-dashboard <project-name> | create-nextjs-web-app <project-name>}"
+    Write-Host "Usage: icmwriper-5-for-pwsh {b | bo | snb <story-name> | create-html-data-dashboard <project-name> | create-nextjs-web-app <project-name>}"
 }
 
 # Function to create timestamp in ICMwRIPER-5 format
@@ -68,6 +68,31 @@ if ([string]::IsNullOrEmpty($Argument)) {
         }
         catch {
             Write-Host "Error: Failed to create '$targetFile'."
+            exit 1
+        }
+    }
+    elseif ($SubCommand -eq "bo") {
+        # bo subcommand handler (bubble only)
+        # Check if bubble only template exists
+        if (-not (Test-Path -Path "icm-bubble-only-template.md" -PathType Leaf)) {
+            Write-Host "Error: File 'icm-bubble-only-template.md' does not exist."
+            exit 1
+        }
+
+        # Generate timestamp
+        $timestamp = Get-ICMTimestamp
+
+        # Define target filename
+        $targetFile = "icm-bubble-only-$timestamp.md"
+
+        # Copy template file
+        try {
+            Copy-Item -Path "icm-bubble-only-template.md" -Destination $targetFile -ErrorAction Stop
+            Write-Host "Success: Copied 'icm-bubble-only-template.md' to '$targetFile'."
+            exit 0
+        }
+        catch {
+            Write-Host "Error: Failed to copy 'icm-bubble-only-template.md' to '$targetFile'."
             exit 1
         }
     }
@@ -279,7 +304,7 @@ switch ($SubCommand) {
     }
 
     default {
-        Write-Host "Error: Unknown command '$SubCommand'. Supported commands: 'b', 'snb', 'create-html-data-dashboard', 'create-nextjs-web-app'."
+        Write-Host "Error: Unknown command '$SubCommand'. Supported commands: 'b', 'bo', 'snb', 'create-html-data-dashboard', 'create-nextjs-web-app'."
         exit 1
     }
 }

@@ -19,16 +19,39 @@ if [ $# -eq 1 ]; then
         # Success message
         echo "Success: Created empty file '$TARGET_FILE'."
         exit 0
+    elif [ "$1" = "bo" ]; then
+        # bo subcommand handler (bubble only)
+        # Check if bubble only template exists
+        if [ ! -f "icm-bubble-only-template.md" ]; then
+            echo "Error: File 'icm-bubble-only-template.md' does not exist."
+            exit 1
+        fi
+
+        # Generate timestamp
+        TIMESTAMP=$(date +"%Y-%m-%d--%H-%M")
+
+        # Define target filename
+        TARGET_FILE="icm-bubble-only-$TIMESTAMP.md"
+
+        # Copy template file
+        if ! cp "icm-bubble-only-template.md" "$TARGET_FILE"; then
+            echo "Error: Failed to copy 'icm-bubble-only-template.md' to '$TARGET_FILE'."
+            exit 1
+        fi
+
+        # Success message
+        echo "Success: Copied 'icm-bubble-only-template.md' to '$TARGET_FILE'."
+        exit 0
     else
         echo "Error: Unknown single-argument command '$1'."
-        echo "Usage: icmwriper-5-for-macos {b | snb <story-name> | create-html-data-dashboard <project-name> | create-nextjs-web-app <project-name>}"
+        echo "Usage: icmwriper-5-for-macos {b | bo | snb <story-name> | create-html-data-dashboard <project-name> | create-nextjs-web-app <project-name>}"
         exit 1
     fi
 fi
 
 # Argument count validation
 if [ $# -ne 2 ]; then
-    echo "Usage: icmwriper-5-for-macos {b | snb <story-name> | create-html-data-dashboard <project-name> | create-nextjs-web-app <project-name>}"
+    echo "Usage: icmwriper-5-for-macos {b | bo | snb <story-name> | create-html-data-dashboard <project-name> | create-nextjs-web-app <project-name>}"
     exit 1
 fi
 
@@ -192,6 +215,6 @@ elif [ "$1" = "create-nextjs-web-app" ]; then
     echo "Success: Project '$PROJECT_NAME' created with ICMwRIPER-5 template files and Next.js web app resources."
     exit 0
 else
-    echo "Error: Unknown command '$1'. Supported commands: 'b', 'snb', 'create-html-data-dashboard', 'create-nextjs-web-app'."
+    echo "Error: Unknown command '$1'. Supported commands: 'b', 'bo', 'snb', 'create-html-data-dashboard', 'create-nextjs-web-app'."
     exit 1
 fi
