@@ -4,6 +4,27 @@ A cross-platform AI-assisted software development methodology that iteratively a
 
 **Supported Platforms**: Ubuntu (WSL2), macOS, and Windows PowerShell
 
+## Cheatsheet for WSL2-Ubuntu/macOS/Windows-PowerShell
+
+```bash
+
+# create-html-data-dashboard
+icm4u/icm4m/icm4p.ps1 create-html-data-dashboard <project-name>
+
+# create-nextjs-web-app
+icm4u/icm4m/icm4p.ps1 create-nextjs-web-app <project-name>
+
+# snb
+icm4u/icm4m/icm4p.ps1 snb <source-story-file>
+
+# bubble-only
+icm4u/icm4m/icm4p.ps1 bo
+
+# bubble-log
+icm4u/icm4m/icm4p.ps1 b
+
+```
+
 ## The Problem
 
 Directly presenting final requirements to AI often leads to code generation that deviates from intended outcomes because the AI lacks human intervention during the development process. Without structured guidance, AI assistants may:
