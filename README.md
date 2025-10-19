@@ -65,13 +65,12 @@ All three implementations provide identical functionality with platform-specific
 
 ## How It Works
 
-The ICMwRIPER-5 method consists of six distinct phases that create a collaborative workflow between human and AI:
+The ICMwRIPER-5 method consists of seven distinct phases that create a collaborative workflow between human and AI:
 
 ### 1. **Iterative Context Management (by human)**
 Iteratively review and update two key files:
 - `icm-story-yyyy-mm-dd--hh-mm.md` - Story description for the current iteration
-- `icm-bubble-yyyy-mm-dd--hh-mm.md` - Starting prompts for the AI (bubbles visualize the chat bubbles between humans and AI)
-- `icmwriper-5.md` - Updated RIPER-5 protocol rules
+- `icm-bubble-yyyy-mm-dd--hh-mm.md` - Starting prompts for the AI (bubbles visualize the chat bubbles between humans and AI). Mentioning the latest context file (`icm-context-yyyy-mm-dd--hh-mm.md`) and the RIPER-5 protocol rules (`icmwriper-5.md`) in the bubble file if applicable.
 
 This ensures proper alignment of AI context before entering the RIPER-5 iteration. Once ready, send the prompts from `icm-bubble-yyyy-mm-dd--hh-mm.md` to the AI to begin.
 
@@ -96,9 +95,14 @@ Follow the plan exactly with no creative decisions. The AI implements only what 
 **Critical**: AI assistants must declare `[MODE: EXECUTE]` at the start of their response.
 
 ### 6. **REVIEW (by AI & human)**
-Validate implementation against the original plan. Check for completeness, correctness, and alignment with requirements. Then return to phase 1 for the next iteration.
+Validate implementation against the original plan. Check for completeness, correctness, and alignment with requirements. 
 
 **Critical**: AI assistants must declare `[MODE: REVIEW]` at the start of their response.
+
+### 7. **GENERATE NEW CONTEXT FILE (by human)**
+Ask your AI assistant to generate a new context file (`icm-context-yyyy-mm-dd--hh-mm.md`) to reflect the current state of the project. This file is used to share the project context with other AI assistants or team members. Then return to phase 1 for the next iteration.
+
+**Critical**: Human must ask your AI assistant to generate a new context file at the end of each iteration.
 
 ## Getting Started
 
