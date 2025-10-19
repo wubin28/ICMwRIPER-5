@@ -1,8 +1,8 @@
 %%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff'}}}%%
-flowchart TD
+flowchart LR
     Start([Start New Iteration]) --> ICM["<div style='text-align: left'>Phase 1: Iterative Context Management<br/>by human<br/><br/>Review & update:<br/>• icm-story-yyyy-mm-dd--hh-mm.md<br/>• icm-bubble-yyyy-mm-dd--hh-mm.md<br/>• Reference latest context file<br/>• Reference icmwriper-5.md</div>"]
 
-    ICM --> SendPrompt["<div style='text-align: left'>Send prompts from bubble file to AI</div>"]
+    ICM --> SendPrompt["<div style='text-align: left'>Send prompts from<br/>bubble file to AI</div>"]
 
     SendPrompt --> Research["<div style='text-align: left'>Phase 2: RESEARCH<br/>by AI & human<br/><br/>MODE: RESEARCH<br/><br/>• Information gathering & file reading only<br/>• AI clarifies requirements with human<br/>• No code changes or implementation decisions</div>"]
 
