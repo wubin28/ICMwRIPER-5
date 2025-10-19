@@ -65,6 +65,41 @@ All three implementations provide identical functionality with platform-specific
 
 ## How It Works
 
+```mermaid
+%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff'}}}%%
+flowchart TD
+    Start([Start New Iteration]) --> ICM["<div style='text-align: left'>Phase 1: Iterative Context Management<br/>by human<br/><br/>Review & update:<br/>• icm-story-yyyy-mm-dd--hh-mm.md<br/>• icm-bubble-yyyy-mm-dd--hh-mm.md<br/>• Reference latest context file<br/>• Reference icmwriper-5.md</div>"]
+
+    ICM --> SendPrompt["<div style='text-align: left'>Send prompts from bubble file to AI</div>"]
+
+    SendPrompt --> Research["<div style='text-align: left'>Phase 2: RESEARCH<br/>by AI & human<br/><br/>MODE: RESEARCH<br/><br/>• Information gathering & file reading only<br/>• AI clarifies requirements with human<br/>• No code changes or implementation decisions</div>"]
+
+    Research --> Innovate["<div style='text-align: left'>Phase 3: INNOVATE<br/>by AI & human<br/><br/>MODE: INNOVATE<br/><br/>• Brainstorm approaches without implementation<br/>• Propose multiple solution strategies<br/>• Discuss trade-offs</div>"]
+
+    Innovate --> Plan["<div style='text-align: left'>Phase 4: PLAN<br/>by AI & human<br/><br/>MODE: PLAN<br/><br/>• Create technical specifications<br/>• Save to: todo-yyyy-mm-dd--hh-mm.md<br/>• Plan must be detailed enough to execute mechanically</div>"]
+
+    Plan --> Execute["<div style='text-align: left'>Phase 5: EXECUTE<br/>by AI & human<br/><br/>MODE: EXECUTE<br/><br/>• Follow the plan exactly<br/>• No creative decisions<br/>• Implement only what was specified</div>"]
+
+    Execute --> Review["<div style='text-align: left'>Phase 6: REVIEW<br/>by AI & human<br/><br/>MODE: REVIEW<br/><br/>• Validate implementation against plan<br/>• Check: completeness, correctness, alignment</div>"]
+
+    Review --> GenContext["<div style='text-align: left'>Phase 7: GENERATE NEW CONTEXT FILE<br/>by human<br/><br/>Ask AI to generate:<br/>• icm-context-yyyy-mm-dd--hh-mm.md<br/><br/>• Reflects current project state<br/>• Used for sharing context with other AI assistants</div>"]
+
+    GenContext --> Decision{Need another<br/>iteration?}
+
+    Decision -->|Yes| ICM
+    Decision -->|No| End([End])
+
+    style ICM fill:#e1f5ff
+    style Research fill:#fff4e1
+    style Innovate fill:#ffe1f5
+    style Plan fill:#e1ffe1
+    style Execute fill:#ffe1e1
+    style Review fill:#f5e1ff
+    style GenContext fill:#e1e1ff
+    style Start fill:#90EE90
+    style End fill:#FFB6C1
+```
+
 The ICMwRIPER-5 method consists of seven distinct phases that create a collaborative workflow between human and AI:
 
 ### 1. **Iterative Context Management (by human)**
