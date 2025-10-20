@@ -123,14 +123,14 @@ switch ($SubCommand) {
         }
 
         # Find bubble template files
-        $templateFiles = Get-ChildItem -Path . -Name "icm-bubble-template*" | Sort-Object
+        $templateFiles = Get-ChildItem -Path . -Filter "icm-bubble-template*" | Sort-Object
         if ($templateFiles.Count -eq 0) {
             Write-Host "Error: No bubble template files found. Expected files starting with 'icm-bubble-template'."
             exit 1
         }
         
         # Use the first template file found
-        $templateFile = $templateFiles[0]
+        $templateFile = $templateFiles[0].FullName
 
         # Generate timestamp (will be used for both files)
         $timestamp = Get-ICMTimestamp
