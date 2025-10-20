@@ -122,11 +122,15 @@ switch ($SubCommand) {
             exit 1
         }
 
-        # Check if bubble template exists
-        if (-not (Test-Path -Path "icm-bubble-template.md" -PathType Leaf)) {
-            Write-Host "Error: File 'icm-bubble-template.md' does not exist."
+        # Find bubble template files
+        $templateFiles = Get-ChildItem -Path . -Name "icm-bubble-template*" | Sort-Object
+        if ($templateFiles.Count -eq 0) {
+            Write-Host "Error: No bubble template files found. Expected files starting with 'icm-bubble-template'."
             exit 1
         }
+        
+        # Use the first template file found
+        $templateFile = $templateFiles[0]
 
         # Generate timestamp (will be used for both files)
         $timestamp = Get-ICMTimestamp
@@ -146,10 +150,10 @@ switch ($SubCommand) {
 
         # Copy bubble file
         try {
-            Copy-Item -Path "icm-bubble-template.md" -Destination $bubbleTarget -ErrorAction Stop
+            Copy-Item -Path $templateFile -Destination $bubbleTarget -ErrorAction Stop
         }
         catch {
-            Write-Host "Error: Failed to copy 'icm-bubble-template.md' to '$bubbleTarget'."
+            Write-Host "Error: Failed to copy '$templateFile' to '$bubbleTarget'."
             # Cleanup: remove the story file that was already created
             Remove-Item -Path $storyTarget -Force -ErrorAction SilentlyContinue
             exit 1
@@ -160,7 +164,7 @@ switch ($SubCommand) {
 
         # Success message
         Write-Host "Success: Copied '$storyName' to '$storyTarget'."
-        Write-Host "Success: Copied 'icm-bubble-template.md' to '$bubbleTarget' and updated story reference to '$storyTarget'."
+        Write-Host "Success: Copied '$templateFile' to '$bubbleTarget' and updated story reference to '$storyTarget'."
         exit 0
     }
 

@@ -531,6 +531,26 @@ When starting a new iteration:
 
 Progress through each RIPER-5 phase systematically. Ensure your AI assistant declares the current mode at the start of each response. When the AI ​​stops in each mode and waits for your signals, carefully check the AI's output and, if necessary, ask the AI ​​to make adjustments until you are satisfied before issuing the signal to enter the next mode.
 
+## Bug Fix History
+
+### SNB Subcommand Bug Fix (2025-10-20)
+
+**Issue**: When first executing the "snb" subcommand after creating a project with `create-nextjs-web-app`, the current directory might not contain "icm-bubble-template.md" but instead contains files like "icm-bubble-template-for-nextjs-web-app.md".
+
+**Root Cause**: The original implementation hardcoded the template filename as "icm-bubble-template.md" instead of dynamically searching for files starting with "icm-bubble-template".
+
+**Fix Applied**: Modified all three platform scripts (icm4u, icm4m, icm4p.ps1) to:
+- Use `find` command (Unix) or `Get-ChildItem` (PowerShell) to search for files starting with "icm-bubble-template"
+- Sort the results and use the first matching file as the template
+- Update success messages to reflect the actual template file used
+
+**Impact**: The snb subcommand now works correctly in all project types, automatically adapting to the specific bubble template file available in the current directory.
+
+**Files Modified**:
+- `/home/ben/OOR/katas/ICMwRIPER-5/icm4u` (already fixed)
+- `/home/ben/OOR/katas/ICMwRIPER-5/icm4m` (fixed in this update)
+- `/home/ben/OOR/katas/ICMwRIPER-5/icm4p.ps1` (fixed in this update)
+
 ## Project Structure
 
 ```

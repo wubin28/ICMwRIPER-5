@@ -67,11 +67,15 @@ if [ "$1" = "snb" ]; then
         exit 1
     fi
 
-    # Check if bubble template exists
-    if [ ! -f "icm-bubble-template.md" ]; then
-        echo "Error: File 'icm-bubble-template.md' does not exist."
+    # Find bubble template files
+    TEMPLATE_FILES=$(find . -maxdepth 1 -name "icm-bubble-template*" | sort)
+    if [ -z "$TEMPLATE_FILES" ]; then
+        echo "Error: No bubble template files found. Expected files starting with 'icm-bubble-template'."
         exit 1
     fi
+    
+    # Use the first template file found
+    TEMPLATE_FILE=$(echo "$TEMPLATE_FILES" | head -n1)
 
     # Generate timestamp (will be used for both files)
     TIMESTAMP=$(date +"%Y-%m-%d--%H-%M")
@@ -87,8 +91,8 @@ if [ "$1" = "snb" ]; then
     fi
 
     # Copy bubble file
-    if ! cp "icm-bubble-template.md" "$BUBBLE_TARGET"; then
-        echo "Error: Failed to copy 'icm-bubble-template.md' to '$BUBBLE_TARGET'."
+    if ! cp "$TEMPLATE_FILE" "$BUBBLE_TARGET"; then
+        echo "Error: Failed to copy '$TEMPLATE_FILE' to '$BUBBLE_TARGET'."
         # Cleanup: remove the story file that was already created
         rm -f "$STORY_TARGET"
         exit 1
@@ -100,7 +104,7 @@ if [ "$1" = "snb" ]; then
 
     # Success message
     echo "Success: Copied '$STORY_NAME' to '$STORY_TARGET'."
-    echo "Success: Copied 'icm-bubble-template.md' to '$BUBBLE_TARGET' and updated story reference to '$STORY_TARGET'."
+    echo "Success: Copied '$TEMPLATE_FILE' to '$BUBBLE_TARGET' and updated story reference to '$STORY_TARGET'."
     exit 0
 
 elif [ "$1" = "create-html-data-dashboard" ]; then
