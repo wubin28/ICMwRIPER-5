@@ -11,7 +11,7 @@
 </领域>
 
 <目的>
-1. 你刚刚在 @icm-4 中修复了有关snb子命令的bug，而该bug同样存在于 @icm4m 和 @icm4p.ps1 中。请参考 @icm-story-2025-10-19--22-45.md 中的有关icm4u中的这个bug的修复需求，然后在 @icm4m 和 @icm4p.ps1 中也实现相同的修复，同时确保 @icm4u 、@icm4m 和 @icm4p.ps1 原有的所有功能在修复bug后仍能正常使用
+1. 你刚刚在 @icm-4 中修复了有关snb子命令的bug，而该bug同样存在于 @icm4m 和 @icm4p.ps1 中。请参考 @icm-context-2025-10-17--14-22.md 中修复这个bug之前的上下文，和 @icm-story-2025-10-19--22-45.md 中的有关icm4u中的这个bug的修复需求，然后在 @icm4m 和 @icm4p.ps1 中也实现相同的修复，同时确保 @icm4u 、@icm4m 和 @icm4p.ps1 原有的所有功能在修复bug后仍能正常使用
 4. 为 @icm-context-2025-10-17--14-22.md 创建一个副本，使用当前时间戳命名
 5. 将 @icm-story-2025-10-19--22-45.md 中的有关icm4u中的这个bug的修复需求以及本次修复bug的情况分别补充到新创建的上下文文档副本和 @README.md 中
 </目的>
