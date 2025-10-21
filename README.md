@@ -413,10 +413,11 @@ pwsh -File icm4p.ps1 create-html-data-dashboard my-dashboard-project
 ```
 
 **What it does**:
-- Creates project directory with 6 files (vs 4 files in regular create)
+- Creates project directory with 7 files
 - Downloads standard template files plus:
   - `first-80-rows-agentic_ai_performance_dataset_20250622.xlsx` - Sample dataset
   - `.gitignore` - Git ignore configuration
+  - `icm-bubble-only-template.md` - Template for standalone bubble files
 - Specialized for Python/HTML/CSS/JavaScript data visualization projects
 
 #### create-nextjs-web-app - Create Next.js Web App Project
@@ -446,11 +447,12 @@ pwsh -File icm4p.ps1 create-nextjs-web-app my-nextjs-app
 ```
 
 **What it does**:
-- Creates project directory with 5 files
+- Creates project directory with 6 files
 - Downloads standard template files plus:
   - `icm-bubble-template-for-nextjs-web-app.md` - Next.js-specific bubble template
   - `icm-story-template-for-nextjs-web-app.md` - Next.js-specific story template
   - `.gitignore` - Next.js-specific Git ignore configuration
+  - `icm-bubble-only-template.md` - Template for standalone bubble files
 - Specialized for Next.js/React/TypeScript web application projects
 
 **Platform availability**: All platforms (Ubuntu, macOS, Windows PowerShell)
@@ -550,6 +552,27 @@ Progress through each RIPER-5 phase systematically. Ensure your AI assistant dec
 - `/home/ben/OOR/katas/ICMwRIPER-5/icm4u` (already fixed)
 - `/home/ben/OOR/katas/ICMwRIPER-5/icm4m` (fixed in this update)
 - `/home/ben/OOR/katas/ICMwRIPER-5/icm4p.ps1` (fixed in this update)
+
+### Missing icm-bubble-only-template.md Bug Fix (2025-10-21)
+
+**Issue**: When executing the `bo` command after creating a project with either `create-nextjs-web-app` or `create-html-data-dashboard`, the script reported an error: "Error: File 'icm-bubble-only-template.md' does not exist."
+
+**Root Cause**: Both project creation commands did not include `icm-bubble-only-template.md` in their list of files to download from GitHub, even though the `bo` command requires this template file to function.
+
+**Fix Applied**: Modified all three platform scripts (icm4u, icm4m, icm4p.ps1) to:
+- Add `icm-bubble-only-template.md` to the downloaded files in both `create-nextjs-web-app` and `create-html-data-dashboard` commands
+- Update file count in success messages to reflect the additional file
+
+**Impact**: The `bo` command now works correctly immediately after project creation on all platforms without requiring manual template file setup.
+
+**Files Modified**:
+- `/home/wzb/OOR/katas/ICMwRIPER-5/icm4u`
+- `/home/wzb/OOR/katas/ICMwRIPER-5/icm4m`
+- `/home/wzb/OOR/katas/ICMwRIPER-5/icm4p.ps1`
+
+**Updated File Counts**:
+- `create-nextjs-web-app`: Now downloads 6 files (was 5)
+- `create-html-data-dashboard`: Now downloads 7 files (was 6)
 
 ## Project Structure
 

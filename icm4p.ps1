@@ -183,8 +183,8 @@ switch ($SubCommand) {
         $githubRawUrl = "https://raw.githubusercontent.com/wubin28/ICMwRIPER-5/main"
 
         # Define files to download with their paths
-        # Root files (4 files)
-        $rootFiles = @("icm-bubble-template.md", "icm-story-template.md", "icmwriper-5.md", "README.md")
+        # Root files (5 files)
+        $rootFiles = @("icm-bubble-template.md", "icm-story-template.md", "icmwriper-5.md", "README.md", "icm-bubble-only-template.md")
 
         # Subdirectory files (2 files)
         $subdirFiles = @(
@@ -233,7 +233,7 @@ switch ($SubCommand) {
         Move-Item -Path $readmePath -Destination $newReadmePath
 
         # Success message
-        Write-Host "Success: Project '$projectName' created with ICMwRIPER-5 template files and HTML data dashboard resources."
+        Write-Host "Success: Project '$projectName' created with ICMwRIPER-5 template files and HTML data dashboard resources (7 files downloaded)."
         exit 0
     }
 
@@ -252,8 +252,8 @@ switch ($SubCommand) {
         $githubRawUrl = "https://raw.githubusercontent.com/wubin28/ICMwRIPER-5/main"
 
         # Define files to download with their paths
-        # Root files (2 files)
-        $rootFiles = @("icmwriper-5.md", "README.md")
+        # Root files (3 files)
+        $rootFiles = @("icmwriper-5.md", "README.md", "icm-bubble-only-template.md")
 
         # Subdirectory files (3 files)
         $subdirFiles = @(
@@ -303,7 +303,7 @@ switch ($SubCommand) {
         Move-Item -Path $readmePath -Destination $newReadmePath
 
         # Success message
-        Write-Host "Success: Project '$projectName' created with ICMwRIPER-5 template files and Next.js web app resources."
+        Write-Host "Success: Project '$projectName' created with ICMwRIPER-5 template files and Next.js web app resources (6 files downloaded)."
         exit 0
     }
 

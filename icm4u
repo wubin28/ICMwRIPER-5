@@ -122,8 +122,8 @@ elif [ "$1" = "create-html-data-dashboard" ]; then
     GITHUB_RAW_URL="https://raw.githubusercontent.com/wubin28/ICMwRIPER-5/main"
 
     # Define files to download with their paths
-    # Root files (4 files)
-    ROOT_FILES=("icm-bubble-template.md" "icm-story-template.md" "icmwriper-5.md" "README.md")
+    # Root files (5 files)
+    ROOT_FILES=("icm-bubble-template.md" "icm-story-template.md" "icmwriper-5.md" "README.md" "icm-bubble-only-template.md")
 
     # Subdirectory files (2 files)
     SUBDIR_FILES=("for-html-data-dashboard/first-80-rows-agentic_ai_performance_dataset_20250622.xlsx" "for-html-data-dashboard/.gitignore")
@@ -160,7 +160,7 @@ elif [ "$1" = "create-html-data-dashboard" ]; then
     mv "$PROJECT_NAME/README.md" "$PROJECT_NAME/icmwriper-5-README.md"
 
     # Success message
-    echo "Success: Project '$PROJECT_NAME' created with ICMwRIPER-5 template files and HTML data dashboard resources."
+    echo "Success: Project '$PROJECT_NAME' created with ICMwRIPER-5 template files and HTML data dashboard resources (7 files downloaded)."
     exit 0
 
 elif [ "$1" = "create-nextjs-web-app" ]; then
@@ -178,8 +178,8 @@ elif [ "$1" = "create-nextjs-web-app" ]; then
     GITHUB_RAW_URL="https://raw.githubusercontent.com/wubin28/ICMwRIPER-5/main"
 
     # Define files to download with their paths
-    # Root files (2 files)
-    ROOT_FILES=("icmwriper-5.md" "README.md")
+    # Root files (3 files)
+    ROOT_FILES=("icmwriper-5.md" "README.md" "icm-bubble-only-template.md")
 
     # Subdirectory files (3 files)
     SUBDIR_FILES=("for-nextjs-web-app/icm-bubble-template-for-nextjs-web-app.md" "for-nextjs-web-app/icm-story-template-for-nextjs-web-app.md" "for-nextjs-web-app/.gitignore")
@@ -216,7 +216,7 @@ elif [ "$1" = "create-nextjs-web-app" ]; then
     mv "$PROJECT_NAME/README.md" "$PROJECT_NAME/icmwriper-5-README.md"
 
     # Success message
-    echo "Success: Project '$PROJECT_NAME' created with ICMwRIPER-5 template files and Next.js web app resources."
+    echo "Success: Project '$PROJECT_NAME' created with ICMwRIPER-5 template files and Next.js web app resources (6 files downloaded)."
     exit 0
 else
     echo "Error: Unknown command '$1'. Supported commands: 'b', 'bo', 'snb', 'create-html-data-dashboard', 'create-nextjs-web-app'."
