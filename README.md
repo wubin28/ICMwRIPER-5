@@ -20,8 +20,8 @@ icm4u/icm4m/icm4p.ps1 snb <source-story-file>
 # bubble-only
 icm4u/icm4m/icm4p.ps1 bo
 
-# bubble-log
-icm4u/icm4m/icm4p.ps1 b
+# dialog-log
+icm4u/icm4m/icm4p.ps1 d
 
 ```
 
