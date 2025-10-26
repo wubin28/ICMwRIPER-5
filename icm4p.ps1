@@ -7,8 +7,8 @@ param(
     [Parameter(Position=0, Mandatory=$true)]
     [string]$SubCommand,
 
-    [Parameter(Position=1, Mandatory=$false)]
-    [string]$Argument
+    [Parameter(Position=1, Mandatory=$false, ValueFromRemainingArguments=$true)]
+    [string[]]$Arguments
 )
 
 # Function to show usage information
@@ -51,7 +51,7 @@ function Update-StoryReferences {
 }
 
 # Special handling for single-argument commands
-if ([string]::IsNullOrEmpty($Argument)) {
+if ($null -eq $Arguments -or $Arguments.Count -eq 0) {
     if ($SubCommand -eq "d") {
         # d subcommand handler
         # Generate timestamp
@@ -101,8 +101,8 @@ if ([string]::IsNullOrEmpty($Argument)) {
     }
 }
 
-# For two-argument commands, validate that Argument is provided
-if ([string]::IsNullOrEmpty($Argument)) {
+# For two-argument commands, validate that Arguments is provided
+if ($null -eq $Arguments -or $Arguments.Count -eq 0) {
     Write-Host "Error: Command '$SubCommand' requires an argument."
     Show-Usage
     exit 1
@@ -113,7 +113,7 @@ switch ($SubCommand) {
     "snb" {
         # SNB (Story aNd Bubble) subcommand handler
         # Store story name
-        $storyName = $Argument
+        $storyName = $Arguments[0]
 
         # Check if source story file exists
         if (-not (Test-Path -Path $storyName -PathType Leaf)) {
@@ -171,25 +171,25 @@ switch ($SubCommand) {
         # Generate HTML Data Dashboard subcommand handler
 
         # Parse arguments to determine repository source and project name
-        if ($args.Count -eq 1 -and $Argument -eq "-gitee") {
+        if ($Arguments.Count -ge 2 -and $Arguments[0] -eq "-gitee") {
             # Use Gitee repository
             $repoUrl = "https://gitee.com/wubin28/ICMwRIPER-5/raw/main"
-            $projectName = $args[0]
+            $projectName = $Arguments[1]
             $repoSource = "Gitee"
         }
-        elseif ([string]::IsNullOrEmpty($Argument) -eq $false -and $Argument -ne "-gitee") {
+        elseif ($Arguments.Count -eq 1 -and $Arguments[0] -ne "-gitee") {
             # Use GitHub repository (default)
             $repoUrl = "https://raw.githubusercontent.com/wubin28/ICMwRIPER-5/main"
-            $projectName = $Argument
+            $projectName = $Arguments[0]
             $repoSource = "GitHub"
         }
         else {
             # Invalid arguments
-            if ($args.Count -eq 1 -and $Argument -ne "-gitee") {
-                Write-Host "Error: Invalid flag '$Argument'. Expected '-gitee'."
-            }
-            elseif ($args.Count -eq 0 -and $Argument -eq "-gitee") {
+            if ($Arguments.Count -eq 1 -and $Arguments[0] -eq "-gitee") {
                 Write-Host "Error: Missing project name after '-gitee' flag."
+            }
+            elseif ($Arguments.Count -ge 1 -and $Arguments[0] -ne "-gitee") {
+                Write-Host "Error: Invalid flag '$($Arguments[0])'. Expected '-gitee'."
             }
             else {
                 Write-Host "Error: Invalid arguments for create-html-data-dashboard."
@@ -263,25 +263,25 @@ switch ($SubCommand) {
         # Generate Next.js Web App subcommand handler
 
         # Parse arguments to determine repository source and project name
-        if ($args.Count -eq 1 -and $Argument -eq "-gitee") {
+        if ($Arguments.Count -ge 2 -and $Arguments[0] -eq "-gitee") {
             # Use Gitee repository
             $repoUrl = "https://gitee.com/wubin28/ICMwRIPER-5/raw/main"
-            $projectName = $args[0]
+            $projectName = $Arguments[1]
             $repoSource = "Gitee"
         }
-        elseif ([string]::IsNullOrEmpty($Argument) -eq $false -and $Argument -ne "-gitee") {
+        elseif ($Arguments.Count -eq 1 -and $Arguments[0] -ne "-gitee") {
             # Use GitHub repository (default)
             $repoUrl = "https://raw.githubusercontent.com/wubin28/ICMwRIPER-5/main"
-            $projectName = $Argument
+            $projectName = $Arguments[0]
             $repoSource = "GitHub"
         }
         else {
             # Invalid arguments
-            if ($args.Count -eq 1 -and $Argument -ne "-gitee") {
-                Write-Host "Error: Invalid flag '$Argument'. Expected '-gitee'."
-            }
-            elseif ($args.Count -eq 0 -and $Argument -eq "-gitee") {
+            if ($Arguments.Count -eq 1 -and $Arguments[0] -eq "-gitee") {
                 Write-Host "Error: Missing project name after '-gitee' flag."
+            }
+            elseif ($Arguments.Count -ge 1 -and $Arguments[0] -ne "-gitee") {
+                Write-Host "Error: Invalid flag '$($Arguments[0])'. Expected '-gitee'."
             }
             else {
                 Write-Host "Error: Invalid arguments for create-nextjs-web-app."
