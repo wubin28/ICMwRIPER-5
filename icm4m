@@ -2,13 +2,13 @@
 
 # Special handling for single-argument commands
 if [ $# -eq 1 ]; then
-    if [ "$1" = "b" ]; then
-        # b subcommand handler
+    if [ "$1" = "d" ]; then
+        # d subcommand handler
         # Generate timestamp
         TIMESTAMP=$(date +"%Y-%m-%d--%H-%M")
 
         # Define target filename
-        TARGET_FILE="bubble-$TIMESTAMP.md"
+        TARGET_FILE="dialog-$TIMESTAMP.md"
 
         # Create empty file
         if ! touch "$TARGET_FILE"; then
@@ -44,14 +44,14 @@ if [ $# -eq 1 ]; then
         exit 0
     else
         echo "Error: Unknown single-argument command '$1'."
-        echo "Usage: icmwriper-5-for-macos {b | bo | snb <story-name> | create-html-data-dashboard <project-name> | create-nextjs-web-app <project-name>}"
+        echo "Usage: icmwriper-5-for-macos {d | bo | snb <story-name> | create-html-data-dashboard <project-name> | create-nextjs-web-app <project-name>}"
         exit 1
     fi
 fi
 
 # Argument count validation
 if [ $# -ne 2 ]; then
-    echo "Usage: icmwriper-5-for-macos {b | bo | snb <story-name> | create-html-data-dashboard <project-name> | create-nextjs-web-app <project-name>}"
+    echo "Usage: icmwriper-5-for-macos {d | bo | snb <story-name> | create-html-data-dashboard <project-name> | create-nextjs-web-app <project-name>}"
     exit 1
 fi
 
@@ -219,6 +219,6 @@ elif [ "$1" = "create-nextjs-web-app" ]; then
     echo "Success: Project '$PROJECT_NAME' created with ICMwRIPER-5 template files and Next.js web app resources (6 files downloaded)."
     exit 0
 else
-    echo "Error: Unknown command '$1'. Supported commands: 'b', 'bo', 'snb', 'create-html-data-dashboard', 'create-nextjs-web-app'."
+    echo "Error: Unknown command '$1'. Supported commands: 'd', 'bo', 'snb', 'create-html-data-dashboard', 'create-nextjs-web-app'."
     exit 1
 fi

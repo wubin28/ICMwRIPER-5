@@ -13,7 +13,7 @@ param(
 
 # Function to show usage information
 function Show-Usage {
-    Write-Host "Usage: icmwriper-5-for-pwsh {b | bo | snb <story-name> | create-html-data-dashboard <project-name> | create-nextjs-web-app <project-name>}"
+    Write-Host "Usage: icmwriper-5-for-pwsh {d | bo | snb <story-name> | create-html-data-dashboard <project-name> | create-nextjs-web-app <project-name>}"
 }
 
 # Function to create timestamp in ICMwRIPER-5 format
@@ -52,13 +52,13 @@ function Update-StoryReferences {
 
 # Special handling for single-argument commands
 if ([string]::IsNullOrEmpty($Argument)) {
-    if ($SubCommand -eq "b") {
-        # b subcommand handler
+    if ($SubCommand -eq "d") {
+        # d subcommand handler
         # Generate timestamp
         $timestamp = Get-ICMTimestamp
 
         # Define target filename
-        $targetFile = "bubble-$timestamp.md"
+        $targetFile = "dialog-$timestamp.md"
 
         # Create empty file
         try {
@@ -308,7 +308,7 @@ switch ($SubCommand) {
     }
 
     default {
-        Write-Host "Error: Unknown command '$SubCommand'. Supported commands: 'b', 'bo', 'snb', 'create-html-data-dashboard', 'create-nextjs-web-app'."
+        Write-Host "Error: Unknown command '$SubCommand'. Supported commands: 'd', 'bo', 'snb', 'create-html-data-dashboard', 'create-nextjs-web-app'."
         exit 1
     }
 }
