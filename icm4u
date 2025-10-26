@@ -44,14 +44,14 @@ if [ $# -eq 1 ]; then
         exit 0
     else
         echo "Error: Unknown single-argument command '$1'."
-        echo "Usage: icmwriper-5-for-ubuntu {d | bo | snb <story-name> | create-html-data-dashboard <project-name> | create-nextjs-web-app <project-name>}"
+        echo "Usage: icmwriper-5-for-ubuntu {d | bo | snb <story-name> | create-html-data-dashboard [-gitee] <project-name> | create-nextjs-web-app [-gitee] <project-name>}"
         exit 1
     fi
 fi
 
 # Argument count validation
-if [ $# -ne 2 ]; then
-    echo "Usage: icmwriper-5-for-ubuntu {d | bo | snb <story-name> | create-html-data-dashboard <project-name> | create-nextjs-web-app <project-name>}"
+if [ $# -ne 2 ] && [ $# -ne 3 ]; then
+    echo "Usage: icmwriper-5-for-ubuntu {d | bo | snb <story-name> | create-html-data-dashboard [-gitee] <project-name> | create-nextjs-web-app [-gitee] <project-name>}"
     exit 1
 fi
 
@@ -109,17 +109,36 @@ if [ "$1" = "snb" ]; then
 
 elif [ "$1" = "create-html-data-dashboard" ]; then
     # Generate HTML Data Dashboard subcommand handler
-    # Store project name
-    PROJECT_NAME="$2"
+
+    # Parse arguments to determine repository source and project name
+    if [ $# -eq 3 ] && [ "$2" = "-gitee" ]; then
+        # Use Gitee repository
+        REPO_URL="https://gitee.com/wubin28/ICMwRIPER-5/raw/main"
+        PROJECT_NAME="$3"
+        REPO_SOURCE="Gitee"
+    elif [ $# -eq 2 ] && [ "$2" != "-gitee" ]; then
+        # Use GitHub repository (default)
+        REPO_URL="https://raw.githubusercontent.com/wubin28/ICMwRIPER-5/main"
+        PROJECT_NAME="$2"
+        REPO_SOURCE="GitHub"
+    else
+        # Invalid arguments
+        if [ $# -eq 3 ] && [ "$2" != "-gitee" ]; then
+            echo "Error: Invalid flag '$2'. Expected '-gitee'."
+        elif [ $# -eq 2 ] && [ "$2" = "-gitee" ]; then
+            echo "Error: Missing project name after '-gitee' flag."
+        else
+            echo "Error: Invalid arguments for create-html-data-dashboard."
+        fi
+        echo "Usage: icmwriper-5-for-ubuntu create-html-data-dashboard [-gitee] <project-name>"
+        exit 1
+    fi
 
     # Directory existence check
     if [ -d "$PROJECT_NAME" ]; then
         echo "Error: Directory '$PROJECT_NAME' already exists."
         exit 1
     fi
-
-    # GitHub repository configuration
-    GITHUB_RAW_URL="https://raw.githubusercontent.com/wubin28/ICMwRIPER-5/main"
 
     # Define files to download with their paths
     # Root files (5 files)
@@ -136,9 +155,9 @@ elif [ "$1" = "create-html-data-dashboard" ]; then
 
     # Download root files
     for filename in "${ROOT_FILES[@]}"; do
-        url="$GITHUB_RAW_URL/$filename"
+        url="$REPO_URL/$filename"
         if ! curl -f -sS -o "$PROJECT_NAME/$filename" "$url"; then
-            echo "Error: Failed to download $filename from GitHub. Please check your internet connection and repository availability."
+            echo "Error: Failed to download $filename from $REPO_SOURCE. Please check your internet connection and repository availability."
             rm -rf "$PROJECT_NAME"
             exit 1
         fi
@@ -148,9 +167,9 @@ elif [ "$1" = "create-html-data-dashboard" ]; then
     for filepath in "${SUBDIR_FILES[@]}"; do
         # Extract just the filename for the target
         filename=$(basename "$filepath")
-        url="$GITHUB_RAW_URL/$filepath"
+        url="$REPO_URL/$filepath"
         if ! curl -f -sS -o "$PROJECT_NAME/$filename" "$url"; then
-            echo "Error: Failed to download $filepath from GitHub. Please check your internet connection and repository availability."
+            echo "Error: Failed to download $filepath from $REPO_SOURCE. Please check your internet connection and repository availability."
             rm -rf "$PROJECT_NAME"
             exit 1
         fi
@@ -160,22 +179,41 @@ elif [ "$1" = "create-html-data-dashboard" ]; then
     mv "$PROJECT_NAME/README.md" "$PROJECT_NAME/icmwriper-5-README.md"
 
     # Success message
-    echo "Success: Project '$PROJECT_NAME' created with ICMwRIPER-5 template files and HTML data dashboard resources (7 files downloaded)."
+    echo "Success: Project '$PROJECT_NAME' created with ICMwRIPER-5 template files and HTML data dashboard resources (7 files downloaded from $REPO_SOURCE)."
     exit 0
 
 elif [ "$1" = "create-nextjs-web-app" ]; then
     # Generate Next.js Web App subcommand handler
-    # Store project name
-    PROJECT_NAME="$2"
+
+    # Parse arguments to determine repository source and project name
+    if [ $# -eq 3 ] && [ "$2" = "-gitee" ]; then
+        # Use Gitee repository
+        REPO_URL="https://gitee.com/wubin28/ICMwRIPER-5/raw/main"
+        PROJECT_NAME="$3"
+        REPO_SOURCE="Gitee"
+    elif [ $# -eq 2 ] && [ "$2" != "-gitee" ]; then
+        # Use GitHub repository (default)
+        REPO_URL="https://raw.githubusercontent.com/wubin28/ICMwRIPER-5/main"
+        PROJECT_NAME="$2"
+        REPO_SOURCE="GitHub"
+    else
+        # Invalid arguments
+        if [ $# -eq 3 ] && [ "$2" != "-gitee" ]; then
+            echo "Error: Invalid flag '$2'. Expected '-gitee'."
+        elif [ $# -eq 2 ] && [ "$2" = "-gitee" ]; then
+            echo "Error: Missing project name after '-gitee' flag."
+        else
+            echo "Error: Invalid arguments for create-nextjs-web-app."
+        fi
+        echo "Usage: icmwriper-5-for-ubuntu create-nextjs-web-app [-gitee] <project-name>"
+        exit 1
+    fi
 
     # Directory existence check
     if [ -d "$PROJECT_NAME" ]; then
         echo "Error: Directory '$PROJECT_NAME' already exists."
         exit 1
     fi
-
-    # GitHub repository configuration
-    GITHUB_RAW_URL="https://raw.githubusercontent.com/wubin28/ICMwRIPER-5/main"
 
     # Define files to download with their paths
     # Root files (3 files)
@@ -192,9 +230,9 @@ elif [ "$1" = "create-nextjs-web-app" ]; then
 
     # Download root files
     for filename in "${ROOT_FILES[@]}"; do
-        url="$GITHUB_RAW_URL/$filename"
+        url="$REPO_URL/$filename"
         if ! curl -f -sS -o "$PROJECT_NAME/$filename" "$url"; then
-            echo "Error: Failed to download $filename from GitHub. Please check your internet connection and repository availability."
+            echo "Error: Failed to download $filename from $REPO_SOURCE. Please check your internet connection and repository availability."
             rm -rf "$PROJECT_NAME"
             exit 1
         fi
@@ -204,9 +242,9 @@ elif [ "$1" = "create-nextjs-web-app" ]; then
     for filepath in "${SUBDIR_FILES[@]}"; do
         # Extract just the filename for the target
         filename=$(basename "$filepath")
-        url="$GITHUB_RAW_URL/$filepath"
+        url="$REPO_URL/$filepath"
         if ! curl -f -sS -o "$PROJECT_NAME/$filename" "$url"; then
-            echo "Error: Failed to download $filepath from GitHub. Please check your internet connection and repository availability."
+            echo "Error: Failed to download $filepath from $REPO_SOURCE. Please check your internet connection and repository availability."
             rm -rf "$PROJECT_NAME"
             exit 1
         fi
@@ -216,7 +254,7 @@ elif [ "$1" = "create-nextjs-web-app" ]; then
     mv "$PROJECT_NAME/README.md" "$PROJECT_NAME/icmwriper-5-README.md"
 
     # Success message
-    echo "Success: Project '$PROJECT_NAME' created with ICMwRIPER-5 template files and Next.js web app resources (6 files downloaded)."
+    echo "Success: Project '$PROJECT_NAME' created with ICMwRIPER-5 template files and Next.js web app resources (6 files downloaded from $REPO_SOURCE)."
     exit 0
 else
     echo "Error: Unknown command '$1'. Supported commands: 'd', 'bo', 'snb', 'create-html-data-dashboard', 'create-nextjs-web-app'."
