@@ -13,7 +13,7 @@ param(
 
 # Function to show usage information
 function Show-Usage {
-    Write-Host "Usage: icm4p {d | bo | snb <story-name> | create-html-data-dashboard <project-name> | create-nextjs-web-app <project-name>}"
+    Write-Host "Usage: icm4p.ps1 {d | bo | snb <story-name> | create-html-data-dashboard [-gitee] <project-name> | create-nextjs-web-app [-gitee] <project-name>}"
 }
 
 # Function to create timestamp in ICMwRIPER-5 format
@@ -169,17 +169,40 @@ switch ($SubCommand) {
 
     "create-html-data-dashboard" {
         # Generate HTML Data Dashboard subcommand handler
-        # Store project name
-        $projectName = $Argument
+
+        # Parse arguments to determine repository source and project name
+        if ($args.Count -eq 1 -and $Argument -eq "-gitee") {
+            # Use Gitee repository
+            $repoUrl = "https://gitee.com/wubin28/ICMwRIPER-5/raw/main"
+            $projectName = $args[0]
+            $repoSource = "Gitee"
+        }
+        elseif ([string]::IsNullOrEmpty($Argument) -eq $false -and $Argument -ne "-gitee") {
+            # Use GitHub repository (default)
+            $repoUrl = "https://raw.githubusercontent.com/wubin28/ICMwRIPER-5/main"
+            $projectName = $Argument
+            $repoSource = "GitHub"
+        }
+        else {
+            # Invalid arguments
+            if ($args.Count -eq 1 -and $Argument -ne "-gitee") {
+                Write-Host "Error: Invalid flag '$Argument'. Expected '-gitee'."
+            }
+            elseif ($args.Count -eq 0 -and $Argument -eq "-gitee") {
+                Write-Host "Error: Missing project name after '-gitee' flag."
+            }
+            else {
+                Write-Host "Error: Invalid arguments for create-html-data-dashboard."
+            }
+            Write-Host "Usage: icm4p.ps1 create-html-data-dashboard [-gitee] <project-name>"
+            exit 1
+        }
 
         # Directory existence check
         if (Test-Path -Path $projectName -PathType Container) {
             Write-Host "Error: Directory '$projectName' already exists."
             exit 1
         }
-
-        # GitHub repository configuration
-        $githubRawUrl = "https://raw.githubusercontent.com/wubin28/ICMwRIPER-5/main"
 
         # Define files to download with their paths
         # Root files (5 files)
@@ -202,11 +225,11 @@ switch ($SubCommand) {
 
         # Download root files
         foreach ($filename in $rootFiles) {
-            $url = "$githubRawUrl/$filename"
+            $url = "$repoUrl/$filename"
             $outputPath = Join-Path $projectName $filename
 
             if (-not (Download-File -Url $url -OutputPath $outputPath)) {
-                Write-Host "Error: Failed to download $filename from GitHub. Please check your internet connection and repository availability."
+                Write-Host "Error: Failed to download $filename from $repoSource. Please check your internet connection and repository availability."
                 Remove-Item -Path $projectName -Recurse -Force -ErrorAction SilentlyContinue
                 exit 1
             }
@@ -216,11 +239,11 @@ switch ($SubCommand) {
         foreach ($filepath in $subdirFiles) {
             # Extract just the filename for the target
             $filename = Split-Path $filepath -Leaf
-            $url = "$githubRawUrl/$filepath"
+            $url = "$repoUrl/$filepath"
             $outputPath = Join-Path $projectName $filename
 
             if (-not (Download-File -Url $url -OutputPath $outputPath)) {
-                Write-Host "Error: Failed to download $filepath from GitHub. Please check your internet connection and repository availability."
+                Write-Host "Error: Failed to download $filepath from $repoSource. Please check your internet connection and repository availability."
                 Remove-Item -Path $projectName -Recurse -Force -ErrorAction SilentlyContinue
                 exit 1
             }
@@ -232,23 +255,46 @@ switch ($SubCommand) {
         Move-Item -Path $readmePath -Destination $newReadmePath
 
         # Success message
-        Write-Host "Success: Project '$projectName' created with ICMwRIPER-5 template files and HTML data dashboard resources (7 files downloaded)."
+        Write-Host "Success: Project '$projectName' created with ICMwRIPER-5 template files and HTML data dashboard resources (7 files downloaded from $repoSource)."
         exit 0
     }
 
     "create-nextjs-web-app" {
         # Generate Next.js Web App subcommand handler
-        # Store project name
-        $projectName = $Argument
+
+        # Parse arguments to determine repository source and project name
+        if ($args.Count -eq 1 -and $Argument -eq "-gitee") {
+            # Use Gitee repository
+            $repoUrl = "https://gitee.com/wubin28/ICMwRIPER-5/raw/main"
+            $projectName = $args[0]
+            $repoSource = "Gitee"
+        }
+        elseif ([string]::IsNullOrEmpty($Argument) -eq $false -and $Argument -ne "-gitee") {
+            # Use GitHub repository (default)
+            $repoUrl = "https://raw.githubusercontent.com/wubin28/ICMwRIPER-5/main"
+            $projectName = $Argument
+            $repoSource = "GitHub"
+        }
+        else {
+            # Invalid arguments
+            if ($args.Count -eq 1 -and $Argument -ne "-gitee") {
+                Write-Host "Error: Invalid flag '$Argument'. Expected '-gitee'."
+            }
+            elseif ($args.Count -eq 0 -and $Argument -eq "-gitee") {
+                Write-Host "Error: Missing project name after '-gitee' flag."
+            }
+            else {
+                Write-Host "Error: Invalid arguments for create-nextjs-web-app."
+            }
+            Write-Host "Usage: icm4p.ps1 create-nextjs-web-app [-gitee] <project-name>"
+            exit 1
+        }
 
         # Directory existence check
         if (Test-Path -Path $projectName -PathType Container) {
             Write-Host "Error: Directory '$projectName' already exists."
             exit 1
         }
-
-        # GitHub repository configuration
-        $githubRawUrl = "https://raw.githubusercontent.com/wubin28/ICMwRIPER-5/main"
 
         # Define files to download with their paths
         # Root files (3 files)
@@ -272,11 +318,11 @@ switch ($SubCommand) {
 
         # Download root files
         foreach ($filename in $rootFiles) {
-            $url = "$githubRawUrl/$filename"
+            $url = "$repoUrl/$filename"
             $outputPath = Join-Path $projectName $filename
 
             if (-not (Download-File -Url $url -OutputPath $outputPath)) {
-                Write-Host "Error: Failed to download $filename from GitHub. Please check your internet connection and repository availability."
+                Write-Host "Error: Failed to download $filename from $repoSource. Please check your internet connection and repository availability."
                 Remove-Item -Path $projectName -Recurse -Force -ErrorAction SilentlyContinue
                 exit 1
             }
@@ -286,11 +332,11 @@ switch ($SubCommand) {
         foreach ($filepath in $subdirFiles) {
             # Extract just the filename for the target
             $filename = Split-Path $filepath -Leaf
-            $url = "$githubRawUrl/$filepath"
+            $url = "$repoUrl/$filepath"
             $outputPath = Join-Path $projectName $filename
 
             if (-not (Download-File -Url $url -OutputPath $outputPath)) {
-                Write-Host "Error: Failed to download $filepath from GitHub. Please check your internet connection and repository availability."
+                Write-Host "Error: Failed to download $filepath from $repoSource. Please check your internet connection and repository availability."
                 Remove-Item -Path $projectName -Recurse -Force -ErrorAction SilentlyContinue
                 exit 1
             }
@@ -302,7 +348,7 @@ switch ($SubCommand) {
         Move-Item -Path $readmePath -Destination $newReadmePath
 
         # Success message
-        Write-Host "Success: Project '$projectName' created with ICMwRIPER-5 template files and Next.js web app resources (6 files downloaded)."
+        Write-Host "Success: Project '$projectName' created with ICMwRIPER-5 template files and Next.js web app resources (6 files downloaded from $repoSource)."
         exit 0
     }
 
