@@ -13,7 +13,7 @@ param(
 
 # Function to show usage information
 function Show-Usage {
-    Write-Host "Usage: icmwriper-5-for-pwsh {d | bo | snb <story-name> | create-html-data-dashboard <project-name> | create-nextjs-web-app <project-name>}"
+    Write-Host "Usage: icm4p {d | bo | snb <story-name> | create-html-data-dashboard <project-name> | create-nextjs-web-app <project-name>}"
 }
 
 # Function to create timestamp in ICMwRIPER-5 format
@@ -97,14 +97,13 @@ if ([string]::IsNullOrEmpty($Argument)) {
         }
     }
     else {
-        Write-Host "Error: Unknown single-argument command '$SubCommand'."
-        Show-Usage
-        exit 1
+        # Not a single-argument command, continue to two-argument command processing
     }
 }
 
 # For two-argument commands, validate that Argument is provided
 if ([string]::IsNullOrEmpty($Argument)) {
+    Write-Host "Error: Command '$SubCommand' requires an argument."
     Show-Usage
     exit 1
 }
