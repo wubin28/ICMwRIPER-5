@@ -56,10 +56,11 @@ ICMwRIPER-5 provides native command-line tools for Ubuntu, macOS, and Windows Po
 - **Prerequisites**: iTerm2, zsh, Git, curl
 
 ### Windows PowerShell
-- **Environment**: Windows 11 with PowerShell 7.5.3 or later
+- **Environment**: Windows 11 with PowerShell 7.5.3 or later, or Windows 11 default PowerShell 5.1
 - **Command**: `icm4p.ps1` (after global install) or `pwsh -File icm4p.ps1` (local script)
 - **Installation**: Optional global installation to user PATH or local script usage
-- **Prerequisites**: PowerShell 7.5.3+, Git
+- **Prerequisites**: PowerShell 7.5.3+ or PowerShell 5.1 (default on Windows 11), Git
+- **Note for PowerShell 5.1 users**: Before running `icm4p.ps1`, execute `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser` to enable script execution. Otherwise you may see an error: "icm4p.ps1 cannot be loaded because running scripts is disabled on this system."
 
 All three implementations provide identical functionality with platform-specific optimizations for the best native experience.
 
@@ -211,18 +212,27 @@ Choose your platform and follow the corresponding installation instructions:
 
 #### Prerequisites
 - Windows 11
-- PowerShell 7.5.3 or later (install from [PowerShell GitHub releases](https://github.com/PowerShell/PowerShell/releases))
+- PowerShell 7.5.3 or later (install from [PowerShell GitHub releases](https://github.com/PowerShell/PowerShell/releases)), or PowerShell 5.1 (default on Windows 11)
 - Git installed (via Git for Windows or other installer)
+
+**Important for PowerShell 5.1 users**: This project also supports Windows 11 default PowerShell 5.1. Before running `icm4p.ps1`, you must first run `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser` to enable script execution. Otherwise, you may see an error: "icm4p.ps1 cannot be loaded because running scripts is disabled on this system. For more information, see about_Execution_Policies at https:/go.microsoft.com/fwlink/?LinkID=135170."
 
 #### Installation Steps
 
-1. **Clone the repository**:
+1. **Set execution policy** (PowerShell 5.1 users only):
+   ```powershell
+   Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+   ```
+   
+   This step is not required for PowerShell 7.5.3+ users.
+
+2. **Clone the repository**:
    ```powershell
    git clone https://github.com/wubin28/ICMwRIPER-5.git
    cd ICMwRIPER-5
    ```
 
-2. **Install the command globally** (optional but recommended):
+3. **Install the command globally** (optional but recommended):
 
    **IMPORTANT**: Execute each segment separately by copying and pasting one at a time:
 
@@ -245,13 +255,13 @@ Choose your platform and follow the corresponding installation instructions:
    Copy-Item icm4p-new-name.ps1 $userScriptsPath\
    ```
 
-3. **Verify installation** (if globally installed):
+4. **Verify installation** (if globally installed):
    ```powershell
    # Restart PowerShell session, then test
    icm4p.ps1 b
    ```
 
-4. **Alternative: Test without global installation**:
+5. **Alternative: Test without global installation**:
    ```powershell
    pwsh -File icm4p.ps1 b
    ```
