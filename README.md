@@ -174,10 +174,10 @@ Choose your platform and follow the corresponding installation instructions:
 
 4. **Test the command**:
    ```bash
-   icm4u b
+   icm4u d
    ```
 
-   This will create a new directory `my-test-project` with the ICMwRIPER-5 template files.
+   This will create a new file `dialog-<current-timestamp>.md`.
 
 ### 2. macOS Installation
 
@@ -196,23 +196,31 @@ Choose your platform and follow the corresponding installation instructions:
    cd ICMwRIPER-5
    ```
 
-2. **Make the script executable**:
+2. **Install the command globally**:
    ```bash
-   chmod +x icm4m
+   sudo cp icm4m /usr/local/bin/
+   sudo chmod +x /usr/local/bin/icm4m
    ```
 
-3. **Test the command**:
+3. **Verify installation**:
    ```bash
-   ./icm4m b
+   which icm4m
    ```
 
-   This will create a new directory `my-test-project` with the ICMwRIPER-5 template files.
+   You should see: `/usr/local/bin/icm4m`
+
+4. **Test the command**:
+   ```bash
+   icm4m d
+   ```
+
+   This will create a new file `dialog-<current-timestamp>.md`.
 
 ### 3. Windows PowerShell Installation
 
 #### Prerequisites
 - Windows 11
-- PowerShell 7.5.3 or later (install from [PowerShell GitHub releases](https://github.com/PowerShell/PowerShell/releases)), or PowerShell 5.1 (default on Windows 11)
+- PowerShell 5.1 or later
 - Git installed (via Git for Windows or other installer)
 
 **Important for PowerShell 5.1 users**: This project also supports Windows 11 default PowerShell 5.1. Before running `icm4p.ps1`, you must first run `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser` to enable script execution. Otherwise, you may see an error: "icm4p.ps1 cannot be loaded because running scripts is disabled on this system. For more information, see about_Execution_Policies at https:/go.microsoft.com/fwlink/?LinkID=135170."
@@ -258,15 +266,15 @@ Choose your platform and follow the corresponding installation instructions:
 4. **Verify installation** (if globally installed):
    ```powershell
    # Restart PowerShell session, then test
-   icm4p.ps1 b
+   icm4p.ps1 d
    ```
 
 5. **Alternative: Test without global installation**:
    ```powershell
-   pwsh -File icm4p.ps1 b
+   pwsh -File icm4p.ps1 d
    ```
 
-   This will create a new directory `my-test-project` with the ICMwRIPER-5 template files.
+   This will create a new file `dialog-<current-timestamp>.md`.
 
 #### What the Commands Do
 
